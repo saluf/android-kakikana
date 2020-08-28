@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Kakikana</string>
+
+    <!--  Labels of destinations  -->
+    <string name="quiz_list_dest_label">Quiz List</string>
+    <string name="kana_list_dest_label">Kana List</string>
+    <string name="kana_detail_dest_label">Kana Detail</string>
+    <string name="scoreboard_dest_label">ScoreBoard</string>
+    <string name="profile_dest_label">Profile</string>
+    <string name="setting_dest_label">Setting</string>
+    <string name="quiz_dest_label">Quiz</string>
+    <string name="quiz_result_dest_label">Quiz Result</string>
+
 </resources>
