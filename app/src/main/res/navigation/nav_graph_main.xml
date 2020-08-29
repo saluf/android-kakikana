@@ -8,61 +8,72 @@
     <fragment
         android:id="@+id/quiz_list_dest"
         android:name="com.salab.project.kakikana.ui.QuizListFragment"
-        android:label="fragment_quiz_list"
-        tools:layout="@layout/fragment_quiz_list" />
+        android:label="@string/quiz_list_dest_label"
+        tools:layout="@layout/fragment_quiz_list" >
+        <action
+            android:id="@+id/action_quiz_list_dest_to_quiz_dest"
+            app:destination="@id/quiz_dest" />
+    </fragment>
     <fragment
         android:id="@+id/quiz_dest"
         android:name="com.salab.project.kakikana.ui.QuizFragment"
-        android:label="fragment_quiz"
-        tools:layout="@layout/fragment_quiz" >
+        android:label="@string/quiz_dest_label"
+        tools:layout="@layout/fragment_quiz">
         <action
             android:id="@+id/action_quizFragment_to_quizResultFragment"
             app:destination="@id/quiz_result_dest" />
         <argument
             android:name="QuizId"
+            android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/quiz_result_dest"
         android:name="com.salab.project.kakikana.ui.QuizResultFragment"
-        android:label="fragment_quiz_result"
-        tools:layout="@layout/fragment_quiz_result" >
+        android:label="@string/quiz_result_dest_label"
+        tools:layout="@layout/fragment_quiz_result">
         <action
             android:id="@+id/action_quizResultFragment_to_quizListFragment"
             app:destination="@id/quiz_list_dest"
             app:popUpTo="@id/quiz_list_dest"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_quiz_result_dest_to_quiz_dest"
+            app:destination="@id/quiz_dest"
+            app:popUpTo="@id/quiz_dest"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/kana_list_dest"
         android:name="com.salab.project.kakikana.ui.KanaListFragment"
-        android:label="fragment_kana_list"
+        android:label="@string/kana_list_dest_label"
         tools:layout="@layout/fragment_kana_list" />
     <fragment
         android:id="@+id/kana_detail_dest"
         android:name="com.salab.project.kakikana.ui.KanaDetailFragment"
-        android:label="fragment_kana_detail"
-        tools:layout="@layout/fragment_kana_detail" >
+        android:label="@string/kana_detail_dest_label"
+        tools:layout="@layout/fragment_kana_detail">
         <argument
             android:name="kanaId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/scoreboard_dest"
         android:name="com.salab.project.kakikana.ui.ScoreboardFragment"
-        android:label="fragment_score_board"
+        android:label="@string/scoreboard_dest_label"
         tools:layout="@layout/fragment_scoreboard" />
     <fragment
         android:id="@+id/profile_dest"
         android:name="com.salab.project.kakikana.ui.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/profile_dest_label"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/setting_dest"
         android:name="com.salab.project.kakikana.ui.SettingFragment"
-        android:label="fragment_setting"
+        android:label="@string/setting_dest_label"
         tools:layout="@layout/fragment_setting" />
-    <action android:id="@+id/action_global_quizFragment" app:destination="@id/quiz_dest" />
-    <action android:id="@+id/action_global_kanaDetailFragment" app:destination="@id/kana_detail_dest" />
+    <action
+        android:id="@+id/action_global_kanaDetailFragment"
+        app:destination="@id/kana_detail_dest" />
 </navigation>
