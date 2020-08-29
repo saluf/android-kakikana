@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_item_result"
+        style="@style/text_quiz_history_header"
+        android:contentDescription="@string/content_desc_item_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_check" />
+
+    <TextView
+        android:id="@+id/tv_item_question"
+        style="@style/text_quiz_history_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.4"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        tools:text="a (katakana)" />
+
+    <ImageView
+        android:id="@+id/iv_item_correct"
+        style="@style/text_quiz_history_header"
+        android:contentDescription="@string/content_desc_item_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_sample_handwritten_kana" />
+
+    <ImageView
+        android:id="@+id/iv_item_user"
+        style="@style/text_quiz_history_header"
+        android:contentDescription="@string/content_desc_item_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_sample_handwritten_kana" />
+
+</LinearLayout>

@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.QuizListFragment">
 
-    <!-- TODO: Update the UI -->
-    <TextView
+    <Button
+        android:id="@+id/btn_start_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/quiz_list_dest_label"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
+        android:text="@string/btn_text_start_quiz" />
 
 </FrameLayout>

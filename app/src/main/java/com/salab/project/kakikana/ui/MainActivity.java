@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,7 +24,15 @@ import java.util.Set;
  */
 public class MainActivity extends AppCompatActivity {
 
+    // constants
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    // global variables
     private AppBarConfiguration mAppBarConfiguration;
+    private NavController mNavController;
+    private BottomNavigationView mBottomNavigationView;
+
+    private Set<Integer> mTopLevelDestSet = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,33 +42,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
 
         // Define top level destinations in which "UP" navigation will be hide and display bottom nav
-        final Set<Integer> topLevelDestSet = new HashSet<>();
-        topLevelDestSet.add(R.id.quiz_list_dest);
-        topLevelDestSet.add(R.id.kana_list_dest);
-        topLevelDestSet.add(R.id.scoreboard_dest);
-        topLevelDestSet.add(R.id.profile_dest);
+        mTopLevelDestSet.add(R.id.quiz_list_dest);
+        mTopLevelDestSet.add(R.id.kana_list_dest);
+        mTopLevelDestSet.add(R.id.scoreboard_dest);
+        mTopLevelDestSet.add(R.id.profile_dest);
 
         // Get NavController
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         // Setup Appbar
         setSupportActionBar(mBinding.toolbar);
-        mAppBarConfiguration = new AppBarConfiguration.Builder(topLevelDestSet).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(mTopLevelDestSet).build();
+        NavigationUI.setupActionBarWithNavController(this, mNavController, mAppBarConfiguration);
 
         // Setup bottom navigation
-        final BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        NavigationUI.setupWithNavController(bottomNav, navController);
+        mBottomNavigationView = findViewById(R.id.bottom_nav);
+        NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
 
-        // Hide bottom navigation in non-top-level destinations
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if(topLevelDestSet.contains(destination.getId())) {
-                // only show bottom navigation for top level destination
-                bottomNav.setVisibility(View.VISIBLE);
-            } else {
-                bottomNav.setVisibility(View.GONE);
-            }
-        });
+        // Adjust appbar, bottom nav components based on destination
+        registerOnDestinationChangedListener();
     }
 
     @Override
@@ -70,9 +71,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // setup options menu navigation
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
+    }
+
+    private void registerOnDestinationChangedListener() {
+        mNavController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            // only show bottom navigation for top level destination
+            if (mTopLevelDestSet.contains(destination.getId())) {
+                mBottomNavigationView.setVisibility(View.VISIBLE);
+            } else {
+                mBottomNavigationView.setVisibility(View.GONE);
+            }
+            // hide "UP" navigation icon at quiz result dest to prevent it back to quiz dest
+            if (destination.getId() == R.id.quiz_result_dest) {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                }
+            }
+        });
     }
 }

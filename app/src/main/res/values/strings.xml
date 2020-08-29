@@ -11,4 +11,34 @@
     <string name="quiz_dest_label">Quiz</string>
     <string name="quiz_result_dest_label">Quiz Result</string>
 
+    <!--  Quiz question types  -->
+    <string name="question_type_write">please write:</string>
+
+    <!--  Content descriptions  -->
+    <string name="content_desc_btn_confirm">confirm answer</string>
+    <string name="content_desc_btn_clear">clear drawing</string>
+    <string name="content_desc_item_result">question correct or not</string>
+    <string name="content_desc_item_correct">correct answer</string>
+    <string name="content_desc_item_user">your answer</string>
+
+    <!-- Appbar Actions Label-->
+    <string name="action_cancel_quiz">Cancel Quiz</string>
+
+    <!--  Button text  -->
+    <string name="btn_text_quiz_confirm">Confirm</string>
+    <string name="btn_text_start_quiz">Free Competition Mode</string>
+    <string name="btn_text_quiz_end">End</string>
+    <string name="btn_text_quiz_again">Again</string>
+
+    <!--  Label, header text  -->
+    <string name="label_result_quiz_history">History</string>
+    <string name="header_result_result">Result</string>
+    <string name="header_result_question">Question</string>
+    <string name="header_result_correct_answer">Correct</string>
+    <string name="header_result_user_answer">Yours</string>
+
+    <!--  Quiz result encouraging text  -->
+    <string name="text_encouraging_words_best">You did great!!</string>
+
+
 </resources>
