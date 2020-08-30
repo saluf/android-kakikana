@@ -48,32 +48,32 @@
 
         <TextView
             android:id="@+id/tv_header_result"
-            style="@style/text_quiz_history_header"
-            android:layout_width="wrap_content"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:text="@string/header_result_result" />
 
         <TextView
             android:id="@+id/tv_header_question"
-            style="@style/text_quiz_history_header"
-            android:layout_width="wrap_content"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
             android:text="@string/header_result_question" />
 
         <TextView
             android:id="@+id/tv_header_correct"
-            style="@style/text_quiz_history_header"
-            android:layout_width="wrap_content"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:text="@string/header_result_correct_answer" />
 
         <TextView
             android:id="@+id/tv_header_user"
-            style="@style/text_quiz_history_header"
-            android:layout_width="wrap_content"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:text="@string/header_result_user_answer" />

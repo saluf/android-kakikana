@@ -54,6 +54,9 @@ dependencies {
     // Charts and graphs
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // Json processing
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     // Remote database and user authentication
     implementation 'com.google.firebase:firebase-database:19.4.0'
     implementation 'com.google.firebase:firebase-auth:19.3.2'

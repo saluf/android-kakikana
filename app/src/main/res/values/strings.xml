@@ -20,6 +20,7 @@
     <string name="content_desc_item_result">question correct or not</string>
     <string name="content_desc_item_correct">correct answer</string>
     <string name="content_desc_item_user">your answer</string>
+    <string name="content_desc_stroke_order">kana stroke order</string>
 
     <!-- Appbar Actions Label-->
     <string name="action_cancel_quiz">Cancel Quiz</string>
@@ -30,15 +31,25 @@
     <string name="btn_text_quiz_end">End</string>
     <string name="btn_text_quiz_again">Again</string>
 
-    <!--  Label, header text  -->
+    <!--  Label, header, tab text  -->
     <string name="label_result_quiz_history">History</string>
+    <string name="label_detail_romaji">Romaji</string>
+    <string name="label_detail_type">Type</string>
+    <string name="label_kana_trend">Correctness Rate</string>
+    <string name="label_common_use">Common Use</string>
     <string name="header_result_result">Result</string>
     <string name="header_result_question">Question</string>
     <string name="header_result_correct_answer">Correct</string>
     <string name="header_result_user_answer">Yours</string>
+    <string name="header_detail_kanji">Kanji</string>
+    <string name="header_detail_kana">Kana</string>
+    <string name="header_detail_meaning">Meaning</string>
+    <string name="tab_kana_hiragana">hiragana</string>
+    <string name="tab_kana_katakana">katakana</string>
 
     <!--  Quiz result encouraging text  -->
     <string name="text_encouraging_words_best">You did great!!</string>
+
 
 
 </resources>

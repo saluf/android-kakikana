@@ -7,10 +7,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="text_quiz_history_header">
+    <style name="text_table_header">
         <item name="android:padding">8dp</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Overline</item>
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="text_section_label">
+        <item name="android:layout_marginTop">@dimen/margin_section_label_to_last_section</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+    <style name="text_subsection_label" parent="text_section_label">
+        <item name="android:layout_marginTop">@dimen/margin_subsection_label_to_last_subsection</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+    </style>
 </resources>

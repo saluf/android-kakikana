@@ -7,17 +7,17 @@
 
     <ImageView
         android:id="@+id/iv_item_result"
-        style="@style/text_quiz_history_header"
+        style="@style/text_table_header"
         android:contentDescription="@string/content_desc_item_result"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:src="@drawable/ic_check" />
 
     <TextView
         android:id="@+id/tv_item_question"
-        style="@style/text_quiz_history_header"
-        android:layout_width="wrap_content"
+        style="@style/text_table_header"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="0.4"
@@ -26,18 +26,18 @@
 
     <ImageView
         android:id="@+id/iv_item_correct"
-        style="@style/text_quiz_history_header"
+        style="@style/text_table_header"
         android:contentDescription="@string/content_desc_item_correct"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:src="@drawable/ic_sample_handwritten_kana" />
 
     <ImageView
         android:id="@+id/iv_item_user"
-        style="@style/text_quiz_history_header"
+        style="@style/text_table_header"
         android:contentDescription="@string/content_desc_item_user"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:src="@drawable/ic_sample_handwritten_kana" />
