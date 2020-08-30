@@ -31,12 +31,14 @@
     <string name="btn_text_quiz_end">End</string>
     <string name="btn_text_quiz_again">Again</string>
 
-    <!--  Label, header, tab text  -->
+    <!--  Label text  -->
     <string name="label_result_quiz_history">History</string>
     <string name="label_detail_romaji">Romaji</string>
     <string name="label_detail_type">Type</string>
     <string name="label_kana_trend">Correctness Rate</string>
     <string name="label_common_use">Common Use</string>
+
+    <!--  Header text  -->
     <string name="header_result_result">Result</string>
     <string name="header_result_question">Question</string>
     <string name="header_result_correct_answer">Correct</string>
@@ -44,6 +46,12 @@
     <string name="header_detail_kanji">Kanji</string>
     <string name="header_detail_kana">Kana</string>
     <string name="header_detail_meaning">Meaning</string>
+    <string name="header_board_rank">Rank</string>
+    <string name="header_board_name">User</string>
+    <string name="header_board_num_correct">Correct</string>
+    <string name="header_board_correctness_rate">Correctness Rate</string>
+
+    <!--  Tab text  -->
     <string name="tab_kana_hiragana">hiragana</string>
     <string name="tab_kana_katakana">katakana</string>
 
