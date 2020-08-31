@@ -23,10 +23,10 @@
         android:layout_marginEnd="@dimen/margin_profile_header_item_to_center_guideline"
         android:adjustViewBounds="true"
         android:contentDescription="@string/content_desc_profile_photo"
+        android:src="@drawable/ic_face"
         app:layout_constraintEnd_toStartOf="@+id/guideline_profile_center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_profile_name_label"
@@ -75,8 +75,8 @@
         android:id="@+id/view_user_trend"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="@dimen/margin_section_content_to_section_label"
         android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginTop="@dimen/margin_section_content_to_section_label"
         android:layout_marginEnd="@dimen/space_all_to_screen_edge"
         android:background="#5703A9F4"
         app:layout_constraintEnd_toEndOf="parent"
