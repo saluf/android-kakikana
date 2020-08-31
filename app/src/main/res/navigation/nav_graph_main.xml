@@ -71,8 +71,7 @@
     <fragment
         android:id="@+id/setting_dest"
         android:name="com.salab.project.kakikana.ui.SettingFragment"
-        android:label="@string/setting_dest_label"
-        tools:layout="@layout/fragment_setting" />
+        android:label="@string/setting_dest_label" />
     <action
         android:id="@+id/action_global_kanaDetailFragment"
         app:destination="@id/kana_detail_dest" />

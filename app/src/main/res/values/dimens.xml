@@ -23,7 +23,7 @@
     <dimen name="margin_subsection_label_to_last_subsection">16dp</dimen>
     <dimen name="margin_subsection_content_to_subsection_label">8dp</dimen>
     <dimen name="margin_detail_header_item_to_center_guideline">8dp</dimen>
-
+    <dimen name="margin_profile_header_item_to_center_guideline">8dp</dimen>
     <!-- others -->
     <dimen name="stroke_width_drawing_view">10dp</dimen>
 </resources>

@@ -1,19 +1,32 @@
 package com.salab.project.kakikana.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.salab.project.kakikana.R;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
+import com.salab.project.kakikana.R;
+import com.salab.project.kakikana.databinding.FragmentProfileBinding;
+
+/**
+ * Fragment display user-level info, including account info, statistics.
+ **/
 public class ProfileFragment extends Fragment {
+
+    // constants
+    private static final String TAG = ProfileFragment.class.getSimpleName();
+
+    // global variables
+    private FragmentProfileBinding mBinding;
 
     public ProfileFragment() {
         // Required empty public constructor
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -22,9 +35,16 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        mBinding = FragmentProfileBinding.inflate(inflater, container, false);
+        return mBinding.getRoot();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_profile, menu);
     }
 }

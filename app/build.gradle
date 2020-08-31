@@ -57,6 +57,9 @@ dependencies {
     // Json processing
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // Setting preferences
+    implementation 'androidx.preference:preference:1.1.1'
+
     // Remote database and user authentication
     implementation 'com.google.firebase:firebase-database:19.4.0'
     implementation 'com.google.firebase:firebase-auth:19.3.2'

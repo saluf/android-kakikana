@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ProfileFragment">
 
-    <!-- TODO: Update the UI -->
-    <TextView
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_profile_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/profile_dest_label"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/iv_profile_photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginTop="@dimen/space_all_to_appbar"
+        android:layout_marginEnd="@dimen/margin_profile_header_item_to_center_guideline"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/content_desc_profile_photo"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_profile_center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_profile_name_label"
+        style="@style/text_subsection_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_profile_header_item_to_center_guideline"
+        android:layout_marginTop="@dimen/space_all_to_appbar"
+        android:gravity="center_horizontal"
+        android:text="@string/label_profile_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_profile_center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_profile_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_subsection_content_to_subsection_label"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_profile_name_label"
+        app:layout_constraintStart_toStartOf="@+id/tv_profile_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_name_label"
+        tools:text="James Norwich" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_profile_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="iv_profile_photo, tv_profile_name" />
+
+    <TextView
+        android:id="@+id/tv_user_trend"
+        style="@style/text_section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_section_label_to_last_section"
+        android:text="@string/label_user_trend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_profile_header" />
+
+    <View
+        android:id="@+id/view_user_trend"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/margin_section_content_to_section_label"
+        android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        android:background="#5703A9F4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_trend" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

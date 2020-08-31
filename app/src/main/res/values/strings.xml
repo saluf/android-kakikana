@@ -21,6 +21,7 @@
     <string name="content_desc_item_correct">correct answer</string>
     <string name="content_desc_item_user">your answer</string>
     <string name="content_desc_stroke_order">kana stroke order</string>
+    <string name="content_desc_profile_photo">profile photo</string>
 
     <!-- Appbar Actions Label-->
     <string name="action_cancel_quiz">Cancel Quiz</string>
@@ -37,6 +38,8 @@
     <string name="label_detail_type">Type</string>
     <string name="label_kana_trend">Correctness Rate</string>
     <string name="label_common_use">Common Use</string>
+    <string name="label_profile_name">User Name</string>
+    <string name="label_user_trend">Overall Correctness Rate</string>
 
     <!--  Header text  -->
     <string name="header_result_result">Result</string>
@@ -54,6 +57,27 @@
     <!--  Tab text  -->
     <string name="tab_kana_hiragana">hiragana</string>
     <string name="tab_kana_katakana">katakana</string>
+
+    <!-- Preference text -->
+    <string name="pref_title_user_category">User</string>
+    <string name="pref_title_quiz_category">Quiz</string>
+    <string name="pref_title_other_category">Others</string>
+    <string name="pref_title_action_link_google">Link Google account</string>
+    <string name="pref_title_num_quiz_per_round">Questions per Round</string>
+    <string name="pref_title_time_per_question">Time per Question</string>
+    <string name="pref_title_lang">Language</string>
+    <string name="pref_key_user_category" translatable="false">pref_user_category</string>
+    <string name="pref_key_quiz_category" translatable="false">pref_quiz_category</string>
+    <string name="pref_key_other_category" translatable="false">pref_other_category</string>
+    <string name="pref_key_action_link_google" translatable="false">pref_action_link_google</string>
+    <string name="pref_key_num_quiz_per_round" translatable="false">pref_num_question_per_round</string>
+    <string name="pref_key_time_per_question" translatable="false">pref_time_per_question</string>
+    <string name="pref_key_lang" translatable="false">pref_lang</string>
+
+    <string name="pref_lang_entry_english" translatable="false">English</string>
+    <string name="pref_lang_entry_chinese_tw" translatable="false">繁體中文</string>
+    <string name="pref_lang_value_english" translatable="false">pref_lang_english</string>
+    <string name="pref_lang_value_chinese_tw" translatable="false">pref_lang_chinese_tw</string>
 
     <!--  Quiz result encouraging text  -->
     <string name="text_encouraging_words_best">You did great!!</string>
