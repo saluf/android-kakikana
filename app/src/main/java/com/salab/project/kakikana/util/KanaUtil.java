@@ -2,10 +2,21 @@ package com.salab.project.kakikana.util;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.salab.project.kakikana.model.Kana;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
-public class IOUtil {
+public class KanaUtil {
+
+    public static final int NUM_OF_KANA = 102;
+    public static final int NUM_OF_HIRAGANA = 51;
+    public static final int NUM_OF_KATAKANA = 51;
 
     public static String readJsonFromRawToString(Context context, int fileId) {
         // helper utility method to read raw json and pre-process into string
@@ -23,5 +34,12 @@ public class IOUtil {
         } catch (IOException e){
             return "";
         }
+    }
+
+    public static List<Kana> processJsonIntoKana(Context context, int fileId){
+        String jsonString = readJsonFromRawToString(context, fileId);
+        Gson gson = new Gson();
+        Type kanaListType = new TypeToken<ArrayList<Kana>>(){}.getType();
+        return gson.fromJson(jsonString, kanaListType);
     }
 }

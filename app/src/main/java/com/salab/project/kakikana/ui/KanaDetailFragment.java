@@ -5,13 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavBackStackEntry;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.salab.project.kakikana.R;
 import com.salab.project.kakikana.databinding.FragmentKanaDetailBinding;
+import com.salab.project.kakikana.model.Kana;
+import com.salab.project.kakikana.viewmodel.KanaViewModel;
 
 /**
  * Fragment to show detail of each kana, including sequence of writing, statistics, and common usage.
@@ -20,9 +27,11 @@ public class KanaDetailFragment extends Fragment {
 
     //constants
     private static final String TAG = KanaDetailFragment.class.getSimpleName();
+    private static final String KEY_SELECTED_KANA_ID = "key_selected_kana_id";
 
     // global variables
     private FragmentKanaDetailBinding mBinding;
+    private int selectedKanaId;
 
     public KanaDetailFragment() {
         // Required empty public constructor
@@ -31,6 +40,12 @@ public class KanaDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null){
+            // preserve selected kana id to survive system kill
+            if (savedInstanceState.containsKey(KEY_SELECTED_KANA_ID)){
+                selectedKanaId = savedInstanceState.getInt(KEY_SELECTED_KANA_ID);
+            }
+        }
     }
 
     @Override
@@ -46,7 +61,33 @@ public class KanaDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // get passed kana Id
-        int kanaId = KanaDetailFragmentArgs.fromBundle(getArguments()).getKanaId();
-        Toast.makeText(requireContext(), kanaId + "", Toast.LENGTH_SHORT).show();
+        selectedKanaId = KanaDetailFragmentArgs.fromBundle(getArguments()).getKanaId();
+
+        // setup ViewModel (shared with KanaDetail) by scoping to BackStackEntry
+        NavBackStackEntry kanaListBackStackEntry =
+                NavHostFragment.findNavController(this).getBackStackEntry(R.id.kana_list_dest);
+        ViewModelProvider.AndroidViewModelFactory factory =
+                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
+        KanaViewModel viewModel = new ViewModelProvider(kanaListBackStackEntry, factory).get(KanaViewModel.class);
+        viewModel.getSelectedKana().observe(getViewLifecycleOwner(), this::populateUI);
+        viewModel.setSelectedKanaById(selectedKanaId);
+    }
+
+    private void populateUI(Kana selectedKana) {
+        mBinding.tvDetailRomaji.setText(selectedKana.getRomaji());
+        mBinding.tvDetailType.setText(selectedKana.getType());
+
+        // TODO : update kana table and collect image urls
+        // Load GIF
+        // ref: https://stackoverflow.com/questions/31082330/show-gif-file-with-glide-image-loading-and-caching-library
+        Glide.with(this)
+                .load(R.drawable.sample_order_animation)
+                .into(mBinding.ivKanaStrokeOrder);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_SELECTED_KANA_ID, selectedKanaId);
     }
 }

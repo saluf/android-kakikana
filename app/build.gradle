@@ -57,6 +57,10 @@ dependencies {
     // Json processing
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // Load GIF
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     // Setting preferences
     implementation 'androidx.preference:preference:1.1.1'
 
