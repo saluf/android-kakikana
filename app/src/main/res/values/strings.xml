@@ -82,6 +82,7 @@
     <!--  Quiz result encouraging text  -->
     <string name="text_encouraging_words_best">You did great!!</string>
 
-
+    <!--  Formatted strings  -->
+    <string name="format_board_corr_rate_in_percent">%1$.1f %%</string>
 
 </resources>
