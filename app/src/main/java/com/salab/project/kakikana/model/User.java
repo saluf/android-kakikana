@@ -57,19 +57,19 @@ public class User {
         this.totalTested = totalTested;
     }
 
-    public Map<String, Object> toMap(boolean isServerTime){
+    public Map<String, Object> toMap(boolean isServerTime) {
         // map format is easier to manipulate before update or add to Firebase database
         Map<String, Object> result = new HashMap<>();
         result.put("name", name);
-        result.put("registerTime", registerTime);
-        result.put("lastLoginTime", lastLoginTime);
-        if (isServerTime){
+        result.put("totalCorrect", totalCorrect);
+        result.put("totalTested", totalTested);
+        if (isServerTime) {
             // replace with reserved keyword to fill it with server time
-            result.put("totalCorrect", ServerValue.TIMESTAMP);
-            result.put("totalTested", ServerValue.TIMESTAMP);
+            result.put("registerTime", ServerValue.TIMESTAMP);
+            result.put("lastLoginTime", ServerValue.TIMESTAMP);
         } else {
-            result.put("totalCorrect", totalCorrect);
-            result.put("totalTested", totalTested);
+            result.put("registerTime", registerTime);
+            result.put("lastLoginTime", lastLoginTime);
         }
         return result;
     }
