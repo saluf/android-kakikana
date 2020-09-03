@@ -156,6 +156,7 @@ public class DrawingView extends View {
 
     public void clear() {
         cachedCanvas.drawColor(backgroundColor);
+        invalidate();
 //        Log.d(TAG, "cleared");
     }
 
