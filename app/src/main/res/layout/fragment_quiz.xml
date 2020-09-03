@@ -56,6 +56,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_center"
         tools:text="a (hiragana)" />
 
+    <ImageView
+        android:id="@+id/iv_correctness_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/content_desc_quiz_corr_indicator"
+        android:src="@drawable/ic_correct"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/drawingView"
+        app:layout_constraintEnd_toEndOf="@+id/drawingView"
+        tools:visibility="visible" />
+
     <com.salab.project.kakikana.view.DrawingView
         android:id="@+id/drawingView"
         android:layout_width="@dimen/size_quiz_drawing_view"
@@ -86,5 +98,40 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_center"
         app:layout_constraintTop_toBottomOf="@+id/drawingView" />
 
+    <Button
+        android:id="@+id/btn_next_question"
+        android:layout_width="@dimen/size_quiz_drawing_view"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_text_quiz_next"
+        android:text="@string/btn_text_quiz_next"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_answer"
+        app:layout_constraintEnd_toEndOf="@+id/btn_confirm_answer"
+        app:layout_constraintStart_toStartOf="@+id/btn_confirm_answer"
+        app:layout_constraintTop_toTopOf="@+id/btn_confirm_answer" />
+
+    <ImageButton
+        android:id="@+id/btn_report_issue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_desc_btn_issue"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_outlined_flag"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/btn_confirm_answer"
+        app:layout_constraintTop_toTopOf="@id/btn_confirm_answer"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_question_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btn_clear_drawing, btn_next_question" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_question_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="iv_correctness_indicator, btn_next_question, btn_report_issue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_result_correctness_to_words"
-        android:text="@string/text_encouraging_words_best"
+        tools:text="@string/text_encouraging_words_best"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintEnd_toEndOf="@+id/tv_correctness_rate"
         app:layout_constraintStart_toStartOf="@+id/tv_correctness_rate"
@@ -35,16 +35,17 @@
         android:text="@string/label_result_quiz_history"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toTopOf="@+id/wrapper_quiz_history_header"
-        app:layout_constraintStart_toStartOf="@+id/tv_quiz_history_body" />
+        app:layout_constraintEnd_toEndOf="@+id/rv_quiz_history_body"
+        app:layout_constraintStart_toStartOf="@+id/rv_quiz_history_body" />
 
     <LinearLayout
         android:id="@+id/wrapper_quiz_history_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/tv_quiz_history_body"
-        app:layout_constraintEnd_toEndOf="@+id/tv_quiz_history_body"
-        app:layout_constraintStart_toStartOf="@+id/tv_quiz_history_body">
+        app:layout_constraintBottom_toTopOf="@+id/rv_quiz_history_body"
+        app:layout_constraintEnd_toEndOf="@+id/rv_quiz_history_body"
+        app:layout_constraintStart_toStartOf="@+id/rv_quiz_history_body">
 
         <TextView
             android:id="@+id/tv_header_result"
@@ -81,7 +82,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tv_quiz_history_body"
+        android:id="@+id/rv_quiz_history_body"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_quiz_history"
         android:layout_marginStart="@dimen/space_all_to_screen_edge"
@@ -103,7 +104,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_quiz_end"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_quiz_history_body" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_quiz_history_body" />
 
     <Button
         android:id="@+id/btn_quiz_end"
@@ -113,6 +114,6 @@
         android:text="@string/btn_text_quiz_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_quiz_again"
-        app:layout_constraintTop_toBottomOf="@+id/tv_quiz_history_body" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_quiz_history_body" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

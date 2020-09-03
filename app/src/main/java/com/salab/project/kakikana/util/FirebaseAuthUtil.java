@@ -43,6 +43,15 @@ public class FirebaseAuthUtil {
         return userTask.getTask();
     }
 
+    public static String getFirebaseAuthUid(){
+        // a synchronous alternative to get uid
+        if (isSignedIn()){
+            return authInstance.getCurrentUser().getUid();
+        } else {
+            return null;
+        }
+    }
+
     private static boolean isSignedIn() {
         // return null user data -> not signed in yet (either new or signed out)
         return authInstance.getCurrentUser() != null;

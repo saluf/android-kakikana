@@ -8,11 +8,11 @@
     <ImageView
         android:id="@+id/iv_item_result"
         style="@style/text_table_header"
-        android:contentDescription="@string/content_desc_item_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:src="@drawable/ic_check" />
+        android:contentDescription="@string/content_desc_item_result"
+        android:src="@drawable/ic_correct" />
 
     <TextView
         android:id="@+id/tv_item_question"
@@ -24,22 +24,24 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         tools:text="a (katakana)" />
 
-    <ImageView
+    <TextView
         android:id="@+id/iv_item_correct"
         style="@style/text_table_header"
-        android:contentDescription="@string/content_desc_item_correct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:src="@drawable/ic_sample_handwritten_kana" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        tools:text="あ" />
 
     <ImageView
         android:id="@+id/iv_item_user"
         style="@style/text_table_header"
-        android:contentDescription="@string/content_desc_item_user"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
+        android:contentDescription="@string/content_desc_item_user"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         android:src="@drawable/ic_sample_handwritten_kana" />
 
 </LinearLayout>

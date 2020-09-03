@@ -16,10 +16,13 @@
 
     <!--  Content descriptions  -->
     <string name="content_desc_btn_confirm">confirm answer</string>
+    <string name="content_desc_btn_next">next question</string>
     <string name="content_desc_btn_clear">clear drawing</string>
+    <string name="content_desc_btn_issue">report question issue</string>
     <string name="content_desc_item_result">question correct or not</string>
     <string name="content_desc_item_correct">correct answer</string>
     <string name="content_desc_item_user">your answer</string>
+    <string name="content_desc_quiz_corr_indicator">question correct or not</string>
     <string name="content_desc_stroke_order">kana stroke order</string>
     <string name="content_desc_profile_photo">profile photo</string>
 
@@ -28,6 +31,7 @@
 
     <!--  Button text  -->
     <string name="btn_text_quiz_confirm">Confirm</string>
+    <string name="btn_text_quiz_next">Next</string>
     <string name="btn_text_start_quiz">Free Competition Mode</string>
     <string name="btn_text_quiz_end">End</string>
     <string name="btn_text_quiz_again">Again</string>
@@ -80,9 +84,14 @@
     <string name="pref_lang_value_chinese_tw" translatable="false">pref_lang_chinese_tw</string>
 
     <!--  Quiz result encouraging text  -->
-    <string name="text_encouraging_words_best">You did great!!</string>
+    <string name="text_encouraging_words_best">Awesome!!</string>
+    <string name="text_encouraging_words_medium">You did great!</string>
+    <string name="text_encouraging_words_low">You can do better next time.</string>
 
     <!--  Formatted strings  -->
     <string name="format_board_corr_rate_in_percent">%1$.1f %%</string>
+    <string name="format_result_corr_rate_in_percent">%1$.0f %% Correct</string>
+    <string name="format_quiz_question">%1$s (%2$s)</string>
+
 
 </resources>
