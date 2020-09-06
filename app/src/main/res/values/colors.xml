@@ -9,4 +9,7 @@
     <!--DrawingView colors-->
     <color name="paintColor">#FFFFFF</color>
     <color name="canvasColor">#000000</color>
+
+    <color name="colorWidgetBackground">#4DFFFFFF</color>
+    <color name="colorWidgetFlashCard">#F6F4DF</color>
 </resources>

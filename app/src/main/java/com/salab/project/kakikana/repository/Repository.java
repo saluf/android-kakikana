@@ -30,6 +30,7 @@ import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.getUserDataba
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserKanaQuizStat;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserQuizStat;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.uploadQuizResult;
+import static com.salab.project.kakikana.util.FlashCardGeneratorUtil.simpleRandomCardGenerator;
 import static com.salab.project.kakikana.util.KanaUtil.processJsonIntoKana;
 
 /**
@@ -146,5 +147,10 @@ public class Repository {
         } else {
             Log.d(TAG, "User is not logged in, or empty quizResult.");
         }
+    }
+
+    public List<Kana> getRandomFlashCards(int numCards) {
+        List<Kana> kanaList = processJsonIntoKana(context, KANA_JSON_TABLE_RESOURCE);
+        return simpleRandomCardGenerator(numCards, kanaList);
     }
 }

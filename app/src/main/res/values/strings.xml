@@ -92,6 +92,9 @@
     <string name="format_board_corr_rate_in_percent">%1$.1f %%</string>
     <string name="format_result_corr_rate_in_percent">%1$.0f %% Correct</string>
     <string name="format_quiz_question">%1$s (%2$s)</string>
+    <string name="format_widget_flash_card_desc">%1$s (%2$s)</string>
 
+    <!-- Widget -->
+    <string name="text_widget_last_flash_card">Great Job! You finish reviews. Take a cup of tea and come back latter.</string>
 
 </resources>

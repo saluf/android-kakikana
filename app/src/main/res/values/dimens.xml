@@ -5,6 +5,7 @@
     <dimen name="size_btn_small">24dp</dimen>
     <dimen name="size_btn_standard">24dp</dimen>
     <dimen name="size_saved_quiz_result_bitmap_size">96dp</dimen>
+    <dimen name="size_widget_flash_card">150dp</dimen>
     <dimen name="height_quiz_progress_bar">20dp</dimen>
     <dimen name="height_quiz_history">300dp</dimen>
 
@@ -25,7 +26,9 @@
     <dimen name="margin_subsection_content_to_subsection_label">8dp</dimen>
     <dimen name="margin_detail_header_item_to_center_guideline">8dp</dimen>
     <dimen name="margin_profile_header_item_to_center_guideline">8dp</dimen>
+    <dimen name="margin_widget_card_to_edge">8dp</dimen>
 
     <!-- others -->
     <dimen name="stroke_width_drawing_view">5dp</dimen>
+
 </resources>
