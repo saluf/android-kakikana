@@ -18,9 +18,10 @@ import com.salab.project.kakikana.model.QuizResult;
 import com.salab.project.kakikana.model.UserKana;
 import com.salab.project.kakikana.util.FirebaseAuthUtil;
 import com.salab.project.kakikana.util.QuizGeneratorUtil;
-import com.salab.project.kakikana.util.TensorFlowUtil;
+import com.salab.project.kakikana.classifier.ClassifierHandler;
 import com.salab.project.kakikana.viewmodel.FirebaseQueryLiveData;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -96,13 +97,21 @@ public class Repository {
     public void getQuestionResult(LiveData<Question> question, Bitmap answerBitmap,
                                   int timeTaken, MutableLiveData<QuestionResult> questionResultWrapper) {
 
-        if (question.getValue() == null || answerBitmap == null){
+        if (question.getValue() == null || answerBitmap == null) {
             Log.w(TAG, "Input Question or Bitmap is empty");
             return;
         }
 
         ExecutorStore.getInstance().getDiskIO().execute(() -> {
-            int recognizedKanaId = TensorFlowUtil.recognizeKana(answerBitmap, question.getValue().getId());
+            int recognizedKanaId = 0;
+
+            try {
+                // TODO: instead of hard coding judge, get result from model it self
+                boolean isHiragana = question.getValue().getType().equals("hiragana");
+                recognizedKanaId = ClassifierHandler.recognizeKana(context, answerBitmap, isHiragana);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             QuestionResult questionResult = new QuestionResult();
             questionResult.loadQuestionKana(question.getValue());
@@ -110,7 +119,8 @@ public class Repository {
             questionResult.setAnswerKanaId(recognizedKanaId);
             questionResult.judgeAnswer();
             // save a compressed copy of the user drawn bitmap
-            questionResult.setDrawnAnswer(Bitmap.createScaledBitmap(answerBitmap, 96, 96, true));
+            int savedBitmapSize = (int) context.getResources().getDimension(R.dimen.size_saved_quiz_result_bitmap_size);
+            questionResult.setDrawnAnswer(Bitmap.createScaledBitmap(answerBitmap, savedBitmapSize, savedBitmapSize, true));
 
             // the LiveData wrapper is created by ViewModel and observed by Fragment,
             // so needs to put the data into the same holder every time
@@ -123,7 +133,7 @@ public class Repository {
 
         String uid = FirebaseAuthUtil.getFirebaseAuthUid();
 
-        if (uid != null && quizResult != null){
+        if (uid != null && quizResult != null) {
             // for every quiz result, three related numbers need to be updated
             // 1. quizResults itself, 2. user-level quiz statistics, 3. user-based per kana quiz statistics
             ExecutorStore.getInstance().getDiskIO().execute(() -> {

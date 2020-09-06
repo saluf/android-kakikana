@@ -28,6 +28,11 @@ android {
         viewBinding true
     }
 
+    // tell gradle not to compress TensorFlow model
+    aaptOptions {
+        noCompress "tflite"
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

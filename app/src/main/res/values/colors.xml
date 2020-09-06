@@ -7,6 +7,6 @@
     <color name="colorTextDark">#101010</color>
 
     <!--DrawingView colors-->
-    <color name="paintColor">#000000</color>
-    <color name="canvasColor">#FFFFFF</color>
+    <color name="paintColor">#FFFFFF</color>
+    <color name="canvasColor">#000000</color>
 </resources>
