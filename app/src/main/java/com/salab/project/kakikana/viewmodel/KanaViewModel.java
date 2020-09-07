@@ -1,12 +1,12 @@
 package com.salab.project.kakikana.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.salab.project.kakikana.model.CommonUse;
 import com.salab.project.kakikana.model.Kana;
 import com.salab.project.kakikana.repository.Repository;
 
@@ -19,10 +19,12 @@ public class KanaViewModel extends AndroidViewModel {
 
     // constants
     private static final String TAG = KanaViewModel.class.getSimpleName();
+    public static final int NUM_COMMON_WORDS = 10;
 
     private Repository repository;
     private LiveData<List<Kana>> kanaList;
     private MutableLiveData<Kana> selectedKana;
+    private LiveData<List<CommonUse>> commonWordList;
 
     public KanaViewModel(Application application) {
         super(application);
@@ -39,8 +41,22 @@ public class KanaViewModel extends AndroidViewModel {
         return selectedKana;
     }
 
+    public LiveData<List<CommonUse>> getCommonWordList() {
+        return commonWordList;
+    }
+
     public void setSelectedKanaById(int kanaId) {
-        selectedKana.setValue(findKanaById(kanaId));
+        // KanaDetail notifies that a kana is selected. Load the data into LiveData and respond to UI.
+
+        if (selectedKana.getValue() != null && kanaId == selectedKana.getValue().getId()) {
+            // if the same one is selected, skip data fetching processes
+            return;
+        }
+        Kana selectedKanaValue = findKanaById(kanaId);
+        selectedKana.setValue(selectedKanaValue);
+        if (selectedKanaValue != null) {
+            commonWordList = repository.getCommonUse(selectedKanaValue.getKana(), NUM_COMMON_WORDS);
+        }
     }
 
     private Kana findKanaById(int kanaId) {

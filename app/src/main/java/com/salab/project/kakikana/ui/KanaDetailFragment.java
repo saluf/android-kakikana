@@ -8,14 +8,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.salab.project.kakikana.R;
+import com.salab.project.kakikana.adpater.CommonUseAdapter;
 import com.salab.project.kakikana.databinding.FragmentKanaDetailBinding;
 import com.salab.project.kakikana.model.Kana;
 import com.salab.project.kakikana.viewmodel.KanaViewModel;
@@ -31,6 +32,7 @@ public class KanaDetailFragment extends Fragment {
 
     // global variables
     private FragmentKanaDetailBinding mBinding;
+    private CommonUseAdapter mAdapter;
     private int selectedKanaId;
 
     public KanaDetailFragment() {
@@ -63,6 +65,11 @@ public class KanaDetailFragment extends Fragment {
         // get passed kana Id
         selectedKanaId = KanaDetailFragmentArgs.fromBundle(getArguments()).getKanaId();
 
+        // setup commonly used words RecyclerView
+        mAdapter = new CommonUseAdapter();
+        mBinding.rvKanaCommonUse.setAdapter(mAdapter);
+        mBinding.rvKanaCommonUse.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         // setup ViewModel (shared with KanaDetail) by scoping to BackStackEntry
         NavBackStackEntry kanaListBackStackEntry =
                 NavHostFragment.findNavController(this).getBackStackEntry(R.id.kana_list_dest);
@@ -71,6 +78,13 @@ public class KanaDetailFragment extends Fragment {
         KanaViewModel viewModel = new ViewModelProvider(kanaListBackStackEntry, factory).get(KanaViewModel.class);
         viewModel.getSelectedKana().observe(getViewLifecycleOwner(), this::populateUI);
         viewModel.setSelectedKanaById(selectedKanaId);
+
+        // update commonly used words RecyclerView
+        viewModel.getCommonWordList().observe(getViewLifecycleOwner(), commonWords -> {
+            if (commonWords != null){
+                mAdapter.setCommonUseList(commonWords);
+            }
+        });
     }
 
     private void populateUI(Kana selectedKana) {

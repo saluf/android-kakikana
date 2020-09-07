@@ -2,6 +2,7 @@ package com.salab.project.kakikana.repository;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
 
@@ -11,12 +12,14 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.database.DataSnapshot;
 import com.salab.project.kakikana.ExecutorStore;
 import com.salab.project.kakikana.R;
+import com.salab.project.kakikana.model.CommonUse;
 import com.salab.project.kakikana.model.Kana;
 import com.salab.project.kakikana.model.Question;
 import com.salab.project.kakikana.model.QuestionResult;
 import com.salab.project.kakikana.model.QuizResult;
 import com.salab.project.kakikana.model.UserKana;
 import com.salab.project.kakikana.util.FirebaseAuthUtil;
+import com.salab.project.kakikana.util.JishoApiUtil;
 import com.salab.project.kakikana.util.QuizGeneratorUtil;
 import com.salab.project.kakikana.classifier.ClassifierHandler;
 import com.salab.project.kakikana.viewmodel.FirebaseQueryLiveData;
@@ -79,6 +82,26 @@ public class Repository {
     public LiveData<List<Kana>> getKanaList() {
         List<Kana> kanaList = processJsonIntoKana(context, KANA_JSON_TABLE_RESOURCE);
         return new MutableLiveData<>(kanaList);
+    }
+
+    public LiveData<List<CommonUse>> getCommonUse(String kana, int numCommonUse) {
+        final MutableLiveData<List<CommonUse>> CommonWordList = new MutableLiveData<>();
+
+        // load common words from network API using AsyncTask to run it asynchronously
+        new AsyncTask<String, Void, List<CommonUse>>(){
+
+            @Override
+            protected List<CommonUse> doInBackground(String... keywords) {
+                return JishoApiUtil.fetchWordsFromApi(keywords[0], numCommonUse);
+            }
+
+            @Override
+            protected void onPostExecute(List<CommonUse> commonUses) {
+                CommonWordList.setValue(commonUses);
+            }
+        }.execute(kana);
+
+        return CommonWordList;
     }
 
     public LiveData<List<Question>> getQuestionList(int quizId, int numQuestions) {
