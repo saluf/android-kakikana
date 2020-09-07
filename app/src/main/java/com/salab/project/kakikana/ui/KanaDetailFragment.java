@@ -10,6 +10,7 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,11 +92,14 @@ public class KanaDetailFragment extends Fragment {
         mBinding.tvDetailRomaji.setText(selectedKana.getRomaji());
         mBinding.tvDetailType.setText(selectedKana.getType());
 
-        // TODO : update kana table and collect image urls
-        // Load GIF
+        // get resource id from filename. ex: R.drawable.stroke_hiragana_a
+        int strokeImageId = getResources().getIdentifier("stroke_" + selectedKana.getType() + "_" + selectedKana.getRomaji(), "drawable", requireContext().getPackageName());
+        // ImageView by default does not support GIF -> load with glide
         // ref: https://stackoverflow.com/questions/31082330/show-gif-file-with-glide-image-loading-and-caching-library
+
         Glide.with(this)
-                .load(R.drawable.sample_order_animation)
+                .load(strokeImageId)
+                .error(R.drawable.ic_image_placeholder)
                 .into(mBinding.ivKanaStrokeOrder);
     }
 

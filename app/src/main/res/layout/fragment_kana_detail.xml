@@ -27,7 +27,7 @@
             android:layout_marginEnd="@dimen/margin_detail_header_item_to_center_guideline"
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_desc_stroke_order"
-            android:src="@drawable/sample_order_animation"
+            tools:src="@drawable/ic_image_placeholder"
             app:layout_constraintEnd_toStartOf="@+id/guideline_detail_center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
