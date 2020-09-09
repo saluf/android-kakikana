@@ -1,5 +1,6 @@
 package com.salab.project.kakikana.ui;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -46,6 +47,11 @@ public class QuizFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // enable options menu
         setHasOptionsMenu(true);
+
+        // lock rotation during quiz (smaller phone only allows portrait)
+        if (getResources().getBoolean(R.bool.isTablet)){
+            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        }
     }
 
     @Override
@@ -64,6 +70,15 @@ public class QuizFragment extends Fragment {
         setupQuizViewModel();
         setupLiveDataObservers();
         setupButtonOnClickResponse();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getResources().getBoolean(R.bool.isTablet)){
+            // release rotation lock
+            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
     }
 
     @Override
