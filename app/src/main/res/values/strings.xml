@@ -41,13 +41,13 @@
 
     <!--  Label text  -->
     <string name="label_result_quiz_history">History</string>
+    <string name="label_corr_rate">Correctness Rate</string>
+    <string name="label_num_correct">Num. Correct</string>
     <string name="label_detail_romaji">Romaji</string>
     <string name="label_detail_type">Type</string>
-    <string name="label_kana_trend">Correctness Rate</string>
+    <string name="label_detail_kana_stat">Statistics</string>
     <string name="label_common_use">Common Use</string>
     <string name="label_profile_name">User Name</string>
-    <string name="label_profile_corr_rate">Correctness Rate</string>
-    <string name="label_profile_num_correct">Num. Correct</string>
     <string name="label_profile_register_date">Register Date</string>
     <string name="label_profile_user_stat">Statistics</string>
     <string name="label_user_trend">Overall Correctness Rate</string>

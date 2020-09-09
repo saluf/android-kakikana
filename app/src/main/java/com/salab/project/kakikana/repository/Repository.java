@@ -132,6 +132,13 @@ public class Repository {
         return CommonWordList;
     }
 
+    public LiveData<DataSnapshot> getUserKana(int kanaId) {
+        FirebaseQueryLiveData userKana = new FirebaseQueryLiveData();
+        String uid = FirebaseAuthUtil.getUid();
+        userKana.setDatabaseReference(FirebaseDatabaseUtil.getUserKanaDatabaseReference(uid, String.valueOf(kanaId)));
+        return userKana;
+    }
+
     public LiveData<List<Question>> getQuestionList(int quizId, int numQuestions) {
 
         final MutableLiveData<List<Question>> questionList = new MutableLiveData<>();

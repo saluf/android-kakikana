@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.database.DataSnapshot;
 import com.salab.project.kakikana.model.CommonUse;
 import com.salab.project.kakikana.model.Kana;
 import com.salab.project.kakikana.repository.Repository;
@@ -25,24 +26,13 @@ public class KanaViewModel extends AndroidViewModel {
     private LiveData<List<Kana>> kanaList;
     private MutableLiveData<Kana> selectedKana;
     private LiveData<List<CommonUse>> commonWordList;
+    private LiveData<DataSnapshot> userKana;
 
     public KanaViewModel(Application application) {
         super(application);
         repository = new Repository(application.getApplicationContext());
         kanaList = repository.getKanaList();
         selectedKana = new MutableLiveData<>();
-    }
-
-    public LiveData<List<Kana>> getKanaList() {
-        return kanaList;
-    }
-
-    public LiveData<Kana> getSelectedKana() {
-        return selectedKana;
-    }
-
-    public LiveData<List<CommonUse>> getCommonWordList() {
-        return commonWordList;
     }
 
     public void setSelectedKanaById(int kanaId) {
@@ -56,6 +46,7 @@ public class KanaViewModel extends AndroidViewModel {
         selectedKana.setValue(selectedKanaValue);
         if (selectedKanaValue != null) {
             commonWordList = repository.getCommonUse(selectedKanaValue.getKana(), NUM_COMMON_WORDS);
+            userKana = repository.getUserKana(selectedKanaValue.getId());
         }
     }
 
@@ -85,4 +76,19 @@ public class KanaViewModel extends AndroidViewModel {
         return null;
     }
 
+    public LiveData<List<Kana>> getKanaList() {
+        return kanaList;
+    }
+
+    public LiveData<Kana> getSelectedKana() {
+        return selectedKana;
+    }
+
+    public LiveData<List<CommonUse>> getCommonWordList() {
+        return commonWordList;
+    }
+
+    public LiveData<DataSnapshot> getUserKana() {
+        return userKana;
+    }
 }

@@ -125,7 +125,7 @@
                     style="@style/text_card_stat_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_profile_corr_rate" />
+                    android:text="@string/label_corr_rate" />
 
                 <TextView
                     android:id="@+id/tv_profile_stat_corr_rate"
@@ -156,7 +156,7 @@
                     style="@style/text_card_stat_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_profile_num_correct" />
+                    android:text="@string/label_num_correct" />
 
                 <TextView
                     android:id="@+id/tv_profile_stat_num_correct"

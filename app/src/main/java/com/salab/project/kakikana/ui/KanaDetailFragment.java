@@ -10,7 +10,6 @@ import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import com.salab.project.kakikana.R;
 import com.salab.project.kakikana.adpater.CommonUseAdapter;
 import com.salab.project.kakikana.databinding.FragmentKanaDetailBinding;
 import com.salab.project.kakikana.model.Kana;
+import com.salab.project.kakikana.model.UserKana;
 import com.salab.project.kakikana.viewmodel.KanaViewModel;
 
 /**
@@ -43,9 +43,9 @@ public class KanaDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             // preserve selected kana id to survive system kill
-            if (savedInstanceState.containsKey(KEY_SELECTED_KANA_ID)){
+            if (savedInstanceState.containsKey(KEY_SELECTED_KANA_ID)) {
                 selectedKanaId = savedInstanceState.getInt(KEY_SELECTED_KANA_ID);
             }
         }
@@ -68,8 +68,8 @@ public class KanaDetailFragment extends Fragment {
 
         // setup commonly used words RecyclerView
         mAdapter = new CommonUseAdapter();
-        mBinding.rvKanaCommonUse.setAdapter(mAdapter);
-        mBinding.rvKanaCommonUse.setLayoutManager(new LinearLayoutManager(requireContext()));
+        mBinding.rvDetailCommonUse.setAdapter(mAdapter);
+        mBinding.rvDetailCommonUse.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         // setup ViewModel (shared with KanaDetail) by scoping to BackStackEntry
         NavBackStackEntry kanaListBackStackEntry =
@@ -77,18 +77,26 @@ public class KanaDetailFragment extends Fragment {
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
         KanaViewModel viewModel = new ViewModelProvider(kanaListBackStackEntry, factory).get(KanaViewModel.class);
-        viewModel.getSelectedKana().observe(getViewLifecycleOwner(), this::populateUI);
+        viewModel.getSelectedKana().observe(getViewLifecycleOwner(), this::populateHeaderUI);
         viewModel.setSelectedKanaById(selectedKanaId);
 
         // update commonly used words RecyclerView
         viewModel.getCommonWordList().observe(getViewLifecycleOwner(), commonWords -> {
-            if (commonWords != null){
+            if (commonWords != null) {
                 mAdapter.setCommonUseList(commonWords);
+            }
+        });
+
+        // update user kana statistics
+        viewModel.getUserKana().observe(getViewLifecycleOwner(), dataSnapshot -> {
+            if (dataSnapshot != null) {
+                UserKana userKana = dataSnapshot.getValue(UserKana.class);
+                populateStatUI(userKana);
             }
         });
     }
 
-    private void populateUI(Kana selectedKana) {
+    private void populateHeaderUI(Kana selectedKana) {
         mBinding.tvDetailRomaji.setText(selectedKana.getRomaji());
         mBinding.tvDetailType.setText(selectedKana.getType());
 
@@ -100,7 +108,22 @@ public class KanaDetailFragment extends Fragment {
         Glide.with(this)
                 .load(strokeImageId)
                 .error(R.drawable.ic_image_placeholder)
-                .into(mBinding.ivKanaStrokeOrder);
+                .into(mBinding.ivDetailStrokeOrder);
+
+    }
+
+    private void populateStatUI(UserKana userKana) {
+        // statistics per kana comes from different json tree node, and therefore needs to be treat separately
+        if (userKana == null) {
+            // the kana is never tested before
+            mBinding.tvDetailStatCorrRate.setText(getResources().getString(R.string.format_corr_rate_in_percent_rounded, 0f));
+            mBinding.tvDetailStatNumCorrect.setText("0");
+        } else {
+            float corrRate = Math.round((float) userKana.getTotalCorrect() / userKana.getTotalTested() * 100);
+            mBinding.tvDetailStatCorrRate.setText(getResources().getString(R.string.format_corr_rate_in_percent_rounded, corrRate));
+            mBinding.tvDetailStatNumCorrect.setText(String.valueOf(userKana.getTotalCorrect()));
+        }
+
     }
 
     @Override

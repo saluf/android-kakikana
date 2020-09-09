@@ -179,7 +179,7 @@ public class FirebaseDatabaseUtil {
         }
     }
 
-    private static DatabaseReference getUserKanaDatabaseReference(String userId, String kanaId) {
+    public static DatabaseReference getUserKanaDatabaseReference(String userId, String kanaId) {
         return getInstance().getReference(DATABASE_REFERENCE_USER_KANA_STAT).child(userId).child(kanaId);
     }
 
