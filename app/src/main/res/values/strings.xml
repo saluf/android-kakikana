@@ -89,7 +89,8 @@
 
     <!--  Formatted strings  -->
     <string name="format_corr_rate_in_percent">%1$.1f %%</string>
-    <string name="format_corr_rate_in_percent_rounded">%1$.0f %% Correct</string>
+    <string name="format_corr_rate_in_percent_rounded">%1$.0f %%</string>
+    <string name="format_quiz_corr_rate_in_percent_rounded">%1$.0f %% Correct</string>
     <string name="format_quiz_question">%1$s (%2$s)</string>
     <string name="format_widget_flash_card_desc">%1$s (%2$s)</string>
 
