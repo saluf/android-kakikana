@@ -39,19 +39,11 @@ public class SettingFragment extends PreferenceFragmentCompat {
     // global variable
     private GoogleSignInClient mGoogleSignInClient;
     private UserViewModel mViewModel;
-;    private boolean isLinkingWithGoogle = false;
+    private boolean isLinkingWithGoogle = false;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.pref_main);
-
-        // setting summary of the Language option list
-        // ref: https://developer.android.com/guide/topics/ui/settings/customize-your-settings
-        ListPreference langPreference = findPreference(getString(R.string.pref_key_lang));
-        if (langPreference != null) {
-            langPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
-        }
-
 
     }
 

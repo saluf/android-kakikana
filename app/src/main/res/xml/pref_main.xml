@@ -13,32 +13,4 @@
             android:key="@string/pref_key_action_link_google"
             android:title="@string/pref_title_action_link_google" />
     </PreferenceCategory>
-    <PreferenceCategory
-        android:key="@string/pref_key_quiz_category"
-        android:title="@string/pref_title_quiz_category">
-        <SeekBarPreference
-            android:defaultValue="10"
-            android:key="@string/pref_key_num_quiz_per_round"
-            android:max="30"
-            android:title="@string/pref_title_num_quiz_per_round"
-            app:min="1"
-            app:showSeekBarValue="true" />
-        <SeekBarPreference
-            android:defaultValue="10"
-            android:key="@string/pref_key_time_per_question"
-            android:max="100"
-            android:title="@string/pref_title_time_per_question"
-            app:min="5"
-            app:showSeekBarValue="true" />
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="@string/pref_key_other_category"
-        android:title="@string/pref_title_other_category">
-        <ListPreference
-            android:defaultValue="@string/pref_lang_value_english"
-            android:entries="@array/pref_lang_entries"
-            android:entryValues="@array/pref_lang_values"
-            android:key="@string/pref_key_lang"
-            android:title="@string/pref_title_lang" />
-    </PreferenceCategory>
 </PreferenceScreen>

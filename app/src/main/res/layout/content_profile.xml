@@ -169,27 +169,4 @@
         </androidx.cardview.widget.CardView>
     </androidx.gridlayout.widget.GridLayout>
 
-    <TextView
-        android:id="@+id/tv_profile_user_trend"
-        style="@style/text_section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_user_trend"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout_profile_stat" />
-
-    <View
-        android:id="@+id/view_profile_user_trend"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="@dimen/space_all_to_screen_edge"
-        android:layout_marginTop="@dimen/margin_section_content_to_section_label"
-        android:layout_marginEnd="@dimen/space_all_to_screen_edge"
-        android:background="#5703A9F4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_user_trend" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

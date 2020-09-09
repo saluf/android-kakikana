@@ -42,8 +42,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
     // Navigation components
@@ -56,10 +56,6 @@ dependencies {
     // Web data fetch
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
-    // Charts and graphs
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     // Json processing
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -79,7 +75,7 @@ dependencies {
 
     // Unit tests and instrumental tests
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
