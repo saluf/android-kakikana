@@ -38,7 +38,7 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Sc
     @Override
     public void onBindViewHolder(@NonNull ScoreboardViewHolder holder, int position) {
         User selectedUser = mScoreboardUserList.get(reversedPosition(position));
-        holder.rankTextView.setText(String.valueOf(reversedPosition(position) + 1));
+        holder.rankTextView.setText(String.valueOf(position + 1));
         holder.nameTextView.setText(selectedUser.getName());
         holder.numCorrectTextView.setText(String.valueOf(selectedUser.getTotalCorrect()));
 
