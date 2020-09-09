@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.util.Pair;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.salab.project.kakikana.ExecutorStore;
 import com.salab.project.kakikana.R;
@@ -19,15 +21,18 @@ import com.salab.project.kakikana.model.QuestionResult;
 import com.salab.project.kakikana.model.QuizResult;
 import com.salab.project.kakikana.model.UserKana;
 import com.salab.project.kakikana.util.FirebaseAuthUtil;
+import com.salab.project.kakikana.util.FirebaseDatabaseUtil;
 import com.salab.project.kakikana.util.JishoApiUtil;
 import com.salab.project.kakikana.util.QuizGeneratorUtil;
 import com.salab.project.kakikana.classifier.ClassifierHandler;
 import com.salab.project.kakikana.viewmodel.FirebaseQueryLiveData;
+import com.salab.project.kakikana.viewmodel.FirebaseUserLiveData;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.createUserDataIfNotExist;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.getScoreboardUsersQuery;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.getUserDatabaseReference;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserKanaQuizStat;
@@ -56,23 +61,46 @@ public class Repository {
         this.context = context;
     }
 
-    public Pair<LiveData<String>, LiveData<DataSnapshot>> getAllUserData() {
-        // user id is saved in FirebaseAuth, additional data is saved in Firebase Database
+    public LiveData<FirebaseUser> getUser() {
+        return new FirebaseUserLiveData(FirebaseAuthUtil.getInstance());
+    }
 
-        final MutableLiveData<String> userId = new MutableLiveData<>();
-        final FirebaseQueryLiveData userData = new FirebaseQueryLiveData();
+    public LiveData<DataSnapshot> getUserData(String uid) {
+        FirebaseQueryLiveData userData = new FirebaseQueryLiveData();
+        userData.setDatabaseReference(getUserDatabaseReference(uid));
+        return userData;
+    }
 
-        FirebaseAuthUtil.getFirebaseUser().addOnSuccessListener(firebaseUser -> {
-            // cannot get Firebase user data unless there is user id
-            String uid = firebaseUser.getUid();
-            userId.setValue(uid);
-            userData.setDatabaseReference(getUserDatabaseReference(uid));
-        }).addOnFailureListener(e -> {
-            // TODO: handle cannot get user exceptions
+    public void signInAnonymously() {
+        // sign in successfully, create user progress data in Firebase realtime database
+        FirebaseAuthUtil.signInAnonymously().addOnSuccessListener(currentUser -> {
+            FirebaseDatabaseUtil.createUserDataIfNotExist(currentUser.getUid());
         });
-        return new Pair<>(userId, userData);
+    }
 
-        // TODO: cannot prevent user data delete from server side
+    public void signInWithCredential(AuthCredential credential) {
+        FirebaseAuthUtil.signInWithCredential(credential).addOnSuccessListener(currentUser -> {
+            createUserDataIfNotExist(currentUser.getUid(), currentUser.getDisplayName());
+        });
+    }
+
+    public void linkOrSignInWithGoogle(AuthCredential credential) {
+        FirebaseAuthUtil.linkWithGoogle(credential)
+                .addOnSuccessListener(currentUser -> {
+                    // update firebase database User name
+                    FirebaseDatabaseUtil.updateUserName(currentUser.getUid(), currentUser.getDisplayName());
+                })
+                .addOnFailureListener(e -> {
+                    if (e instanceof FirebaseAuthUserCollisionException) {
+                        // The credential has already been linked with other account.
+                        // Sign user in and the current anonymous user data will be lost
+                        FirebaseAuthUtil.signInWithCredential(credential);
+                    }
+                });
+    }
+
+    public void userSignOut() {
+        FirebaseAuthUtil.userSignOut();
     }
 
     public LiveData<DataSnapshot> getScoreboardUsers() {
@@ -88,7 +116,7 @@ public class Repository {
         final MutableLiveData<List<CommonUse>> CommonWordList = new MutableLiveData<>();
 
         // load common words from network API using AsyncTask to run it asynchronously
-        new AsyncTask<String, Void, List<CommonUse>>(){
+        new AsyncTask<String, Void, List<CommonUse>>() {
 
             @Override
             protected List<CommonUse> doInBackground(String... keywords) {
@@ -155,7 +183,7 @@ public class Repository {
 
     public void addQuizResult(QuizResult quizResult, Map<String, UserKana> kanaQuizResult) {
 
-        String uid = FirebaseAuthUtil.getFirebaseAuthUid();
+        String uid = FirebaseAuthUtil.getUid();
 
         if (uid != null && quizResult != null) {
             // for every quiz result, three related numbers need to be updated

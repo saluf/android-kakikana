@@ -1,13 +1,11 @@
 package com.salab.project.kakikana.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,7 +14,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.salab.project.kakikana.R;
 import com.salab.project.kakikana.databinding.ActivityMainBinding;
-import com.salab.project.kakikana.viewmodel.UserViewModel;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -64,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Adjust appbar, bottom nav components based on destination
         registerOnDestinationChangedListener();
-
-        // setup Activity-scoped UserViewModel
-        ViewModelProvider.Factory factory = new ViewModelProvider.NewInstanceFactory();
-        UserViewModel viewModel = new ViewModelProvider(this, factory).get(UserViewModel.class);
 
     }
 

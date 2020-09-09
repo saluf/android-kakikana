@@ -2,12 +2,13 @@ package com.salab.project.kakikana.util;
 
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.createUserData;
 
 /**
  * Utility class abstract FirebaseAuth related code.
@@ -16,44 +17,86 @@ public class FirebaseAuthUtil {
 
     // constants
     private static final String TAG = FirebaseAuthUtil.class.getSimpleName();
-    private static final FirebaseAuth authInstance = FirebaseAuth.getInstance();
+    private static FirebaseAuth authInstance;
 
-    public static Task<FirebaseUser> getFirebaseUser(){
-        // return current user or create one
+    public static FirebaseAuth getInstance() {
+        if (authInstance == null) {
+            authInstance = FirebaseAuth.getInstance();
+        }
+        return authInstance;
+    }
+
+    public static String getUid() {
+        if (getInstance().getCurrentUser() != null) {
+            return getInstance().getCurrentUser().getUid();
+        }
+        return null;
+    }
+
+    public static Task<FirebaseUser> linkWithGoogle(AuthCredential credential) {
+
         final TaskCompletionSource<FirebaseUser> userTask = new TaskCompletionSource<>();
 
-        if (isSignedIn()){
-            userTask.setResult(authInstance.getCurrentUser());
-        } else {
-            // Create a anonymous account for every user
-            authInstance.signInAnonymously().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    FirebaseUser currentUser = authInstance.getCurrentUser();
-                    if (currentUser != null){
-                        createUserData(currentUser.getUid());
+        FirebaseUser currentUser = getInstance().getCurrentUser();
+        if (currentUser != null) {
+            getInstance().getCurrentUser().linkWithCredential(credential)
+                    .addOnSuccessListener(authResult -> {
                         userTask.setResult(currentUser);
-                    }
-                } else {
-                    // TODO: handle sign-in failure, user should not proceed under this circumstance
-//                    userTask.setException(task.getException());
-                    Log.w(TAG, "User failed to sign in");
-                }
-            });
+                        Log.i(TAG, "linked with Google successfully");
+                    })
+                    .addOnFailureListener(e -> {
+                        userTask.setException(e);
+                        Log.d(TAG, "failed to link with Google. " + e.getMessage());
+                    });
+        } else {
+            Log.wtf(TAG, "User needs to log in before link");
         }
+
         return userTask.getTask();
     }
 
-    public static String getFirebaseAuthUid(){
-        // a synchronous alternative to get uid
-        if (isSignedIn()){
-            return authInstance.getCurrentUser().getUid();
-        } else {
-            return null;
-        }
+    public static Task<FirebaseUser> signInAnonymously() {
+        // create an anonymous account for users to keep their progress
+        // can be link with Google (or other auth methods) latter
+        final TaskCompletionSource<FirebaseUser> loginTask = new TaskCompletionSource<>();
+
+        getInstance().signInAnonymously().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && getInstance().getCurrentUser() != null) {
+
+                FirebaseUser currentUser = getInstance().getCurrentUser();
+                loginTask.setResult(currentUser);
+                Log.i(TAG, "succeeded to sign in anonymously.");
+
+            } else {
+                Log.w(TAG, "failed to sign in anonymously. " + task.getException());
+            }
+        });
+        return loginTask.getTask();
     }
 
-    private static boolean isSignedIn() {
-        // return null user data -> not signed in yet (either new or signed out)
-        return authInstance.getCurrentUser() != null;
+    public static Task<FirebaseUser> signInWithCredential(AuthCredential credential) {
+        // create an account and link with Google in one step
+
+        final TaskCompletionSource<FirebaseUser> loginTask = new TaskCompletionSource<>();
+
+        getInstance().signInWithCredential(credential)
+                .addOnCompleteListener((OnCompleteListener<AuthResult>) task -> {
+                    if (task.isSuccessful() && getInstance().getCurrentUser() != null) {
+
+                        FirebaseUser currentUser = getInstance().getCurrentUser();
+                        loginTask.setResult(currentUser);
+                        Log.i(TAG, "succeeded to sign in with Google.");
+
+                    } else {
+                        Log.w(TAG, "failed to sign in with Google. " + task.getException());
+                    }
+                });
+
+        return loginTask.getTask();
+    }
+
+    public static void userSignOut() {
+        getInstance().signOut();
+        Log.i(TAG, "Current user have been signed out");
     }
 }

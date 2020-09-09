@@ -1,11 +1,10 @@
 package com.salab.project.kakikana.viewmodel;
 
-import android.util.Log;
-import android.util.Pair;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.salab.project.kakikana.repository.Repository;
 
@@ -17,24 +16,47 @@ public class UserViewModel extends ViewModel {
     // constants
     private static final String TAG = UserViewModel.class.getSimpleName();
 
-    LiveData<String> userId;
-    LiveData<DataSnapshot> userData;
     Repository repository;
 
-    public UserViewModel(){
-        repository = new Repository();
-        Pair<LiveData<String>, LiveData<DataSnapshot> > userDataPair = repository.getAllUserData();
-        userId = userDataPair.first;
-        userData = userDataPair.second;
+    LiveData<FirebaseUser> user;
+    LiveData<DataSnapshot> userData;
 
-        Log.d(TAG, "ViewModel is instantiated");
+    public UserViewModel() {
+        repository = new Repository();
+        user = repository.getUser();
+
     }
 
-    public LiveData<String> getUserId() {
-        return userId;
+    public void loadUserData() {
+        if (user.getValue() != null) {
+            String uid = user.getValue().getUid();
+            userData = repository.getUserData(uid);
+        }
+    }
+
+    public void signIn() {
+        repository.signInAnonymously();
+    }
+
+    public void signIn(AuthCredential credential) {
+        repository.signInWithCredential(credential);
+    }
+
+    public void signOut() {
+        repository.userSignOut();
+    }
+
+    public void linkWithGoogle(AuthCredential credential) {
+        repository.linkOrSignInWithGoogle(credential);
+    }
+
+    public LiveData<FirebaseUser> getUser() {
+        return user;
     }
 
     public LiveData<DataSnapshot> getUserData() {
         return userData;
     }
+
+
 }

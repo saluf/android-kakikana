@@ -27,6 +27,7 @@ public class FirebaseDatabaseUtil {
     // constants
     private static final String TAG = FirebaseDatabaseUtil.class.getSimpleName();
     public static final String DATABASE_REFERENCE_USER = "users";
+    public static final String DATABASE_REFERENCE_USER_NAME = "name";
     public static final String DATABASE_REFERENCE_QUIZ_RESULTS = "quizResults";
     public static final String DATABASE_REFERENCE_USER_KANA_STAT = "userKana";
 
@@ -56,11 +57,55 @@ public class FirebaseDatabaseUtil {
         return getInstance().getReference(DATABASE_REFERENCE_USER).orderByChild("totalCorrect").limitToLast(100);
     }
 
-    public static void createUserData(String uid) {
-        // create initial user data right after users are registered
-        Map<String, Object> newUser = new User().toMap(true);
-        getInstance().getReference(DATABASE_REFERENCE_USER).child(uid).setValue(newUser);
-        Log.d(TAG, "init user profile");
+    public static void createUserDataIfNotExist(String uid) {
+        createUserDataIfNotExist(uid, null);
+    }
+
+    public static void createUserDataIfNotExist(String uid, String userName) {
+        // check if user data has existed or create one for new user
+
+        getInstance().getReference(DATABASE_REFERENCE_USER).child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getValue() == null) {
+                    // completely new user -> create a profile
+                    createNewUserData(uid, userName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "check user data existence was cancelled by the server.");
+            }
+        });
+    }
+
+    private static void createNewUserData(String uid, String userName) {
+        User newUser = new User();
+        if (userName != null) {
+            // default name is "anonymous". If user sign in with Google, then take their profile name.
+            newUser.setName(userName);
+        }
+
+        Map<String, Object> newUserMap = newUser.toMap(true);
+        getInstance().getReference(DATABASE_REFERENCE_USER).child(uid).setValue(newUserMap)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "successfully create user profile ");
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "failed to create user profile. " + e.getMessage());
+                });
+    }
+
+    public static void updateUserName(String uid, String displayName) {
+        getInstance().getReference(DATABASE_REFERENCE_USER).child(uid).child(DATABASE_REFERENCE_USER_NAME)
+                .setValue(displayName)
+                .addOnSuccessListener(aVoid -> {
+                    Log.i(TAG, "successfully update user user name as " + displayName);
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "failed  update user user name. " + e.getMessage());
+                });
     }
 
     public static void uploadQuizResult(String uid, QuizResult quizResult) {
@@ -90,7 +135,7 @@ public class FirebaseDatabaseUtil {
                             });
                 } else {
                     // empty user profile create one
-                    createUserData(uid);
+                    createUserDataIfNotExist(uid);
                 }
             }
 
@@ -137,6 +182,5 @@ public class FirebaseDatabaseUtil {
     private static DatabaseReference getUserKanaDatabaseReference(String userId, String kanaId) {
         return getInstance().getReference(DATABASE_REFERENCE_USER_KANA_STAT).child(userId).child(kanaId);
     }
-
 
 }
