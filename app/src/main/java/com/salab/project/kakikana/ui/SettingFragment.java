@@ -39,6 +39,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
     // global variable
     private GoogleSignInClient mGoogleSignInClient;
     private UserViewModel mViewModel;
+;    private boolean isLinkingWithGoogle = false;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -62,7 +63,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
         mViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
 
         mViewModel.getUser().observe(getViewLifecycleOwner(), currentUser -> {
-            if (currentUser != null){
+            if (currentUser != null) {
                 updateUi(currentUser.isAnonymous());
             }
         });
@@ -78,6 +79,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
         Preference actionSignOut = findPreference(getString(R.string.pref_key_action_sign_out));
 
         if (isAnonymous) {
+
             // link with Google
             actionLinkGoogle.setVisible(true);
             actionSignOut.setVisible(false);
@@ -85,15 +87,21 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 requestGoogleAuth();
                 return true;
             });
+
         } else {
-            // sign out
-            actionLinkGoogle.setVisible(false);
-            actionSignOut.setVisible(true);
-            actionSignOut.setOnPreferenceClickListener(preference -> {
-                mViewModel.signOut();
+            if (isLinkingWithGoogle) {
+                // linking or signing successfully redirect to login to refresh cached data
                 redirectToLogin();
-                return true;
-            });
+            } else {
+                // sign out
+                actionLinkGoogle.setVisible(false);
+                actionSignOut.setVisible(true);
+                actionSignOut.setOnPreferenceClickListener(preference -> {
+                    mViewModel.signOut();
+                    redirectToLogin();
+                    return true;
+                });
+            }
         }
     }
 
@@ -124,16 +132,17 @@ public class SettingFragment extends PreferenceFragmentCompat {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                if (account != null){
+                if (account != null) {
                     String idToken = account.getIdToken();
                     AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+                    isLinkingWithGoogle = true;
                     mViewModel.linkWithGoogle(credential);
                     Log.d(TAG, "Google authentication is successful");
                 }
 
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(requireContext(), "Google authentication failed. Please try again.", Toast.LENGTH_SHORT).show();;
+                Toast.makeText(requireContext(), "Google authentication failed. Please try again.", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Google sign in failed" + e.getMessage());
             }
         }
