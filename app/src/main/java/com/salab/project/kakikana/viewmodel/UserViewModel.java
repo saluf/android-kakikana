@@ -1,5 +1,7 @@
 package com.salab.project.kakikana.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -28,6 +30,10 @@ public class UserViewModel extends ViewModel {
     }
 
     public void loadUserData() {
+        if (userData != null) {
+            userData = null;
+        }
+
         if (user.getValue() != null) {
             String uid = user.getValue().getUid();
             userData = repository.getUserData(uid);

@@ -94,6 +94,7 @@ public class Repository {
                     if (e instanceof FirebaseAuthUserCollisionException) {
                         // The credential has already been linked with other account.
                         // Sign user in and the current anonymous user data will be lost
+                        userSignOut();
                         FirebaseAuthUtil.signInWithCredential(credential);
                     }
                 });
