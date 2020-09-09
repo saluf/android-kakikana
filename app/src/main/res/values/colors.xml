@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorTextLight">#DDDDDD</color>
     <color name="colorTextDark">#101010</color>
+    <color name="colorBackground">#FFFFFF</color>
 
     <!--DrawingView colors-->
     <color name="paintColor">#FFFFFF</color>

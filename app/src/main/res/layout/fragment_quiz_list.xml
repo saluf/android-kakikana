@@ -1,15 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.QuizListFragment">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_start_quiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btn_text_start_quiz" />
+    <include
+        android:id="@+id/content_quiz_list"
+        layout="@layout/content_quiz_list"/>
 
 </FrameLayout>

@@ -5,11 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--TODO: extract to separate layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.KanaDetailFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_detail_vertical_quarter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_detail_vertical_center"
@@ -24,10 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_all_to_screen_edge"
             android:layout_marginTop="@dimen/space_all_to_appbar"
-            android:layout_marginEnd="@dimen/margin_detail_header_item_to_center_guideline"
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_desc_stroke_order"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_quarter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_image_placeholder" />
@@ -37,12 +43,11 @@
             style="@style/text_subsection_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_detail_header_item_to_center_guideline"
             android:layout_marginTop="@dimen/space_all_to_appbar"
             android:gravity="center_horizontal"
             android:text="@string/label_detail_romaji"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_quarter"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -96,16 +101,17 @@
             android:layout_height="wrap_content"
             android:text="@string/label_detail_kana_stat"
             app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
-            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/barrier_detail_header" />
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/gridlayout_detail_stat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_all_to_screen_edge_exclude_gutter"
             android:layout_marginTop="@dimen/margin_section_content_to_section_label"
             app:columnCount="@integer/grid_count_profile_stat"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_stat_label">
 
@@ -175,12 +181,13 @@
         <TextView
             android:id="@+id/tv_kana_common_use_label"
             style="@style/text_section_label"
+            android:layout_marginTop="@dimen/space_all_to_appbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_common_use"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
-            app:layout_constraintTop_toBottomOf="@+id/gridlayout_detail_stat" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/wrapper_detail_common_use_header"
@@ -222,10 +229,9 @@
             android:id="@+id/rv_detail_common_use"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_all_to_screen_edge"
             android:layout_marginEnd="@dimen/space_all_to_screen_edge"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
             app:layout_constraintTop_toBottomOf="@+id/wrapper_detail_common_use_header"
             tools:listitem="@layout/item_common_use" />
 

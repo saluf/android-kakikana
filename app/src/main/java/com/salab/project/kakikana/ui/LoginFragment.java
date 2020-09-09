@@ -85,9 +85,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void setupButtonOnClickResponse() {
-        mBinding.btnSignInAnonymous.setOnClickListener(v -> mViewModel.signIn());
+        mBinding.contentLogin.btnSignInAnonymous.setOnClickListener(v -> mViewModel.signIn());
 
-        mBinding.btnSignInGoogle.setOnClickListener(v -> requestGoogleAuth());
+        mBinding.contentLogin.btnSignInGoogle.setOnClickListener(v -> requestGoogleAuth());
     }
 
     private void requestGoogleAuth() {

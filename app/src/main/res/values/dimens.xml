@@ -33,5 +33,6 @@
 
     <!-- others -->
     <dimen name="stroke_width_drawing_view">5dp</dimen>
+    <dimen name="elevation_standard">4dp</dimen>
 
 </resources>

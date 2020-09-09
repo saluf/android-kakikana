@@ -46,7 +46,7 @@ public class QuizListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Navigate to quiz destination
-        mBinding.btnStartQuiz.setOnClickListener(v -> {
+        mBinding.contentQuizList.btnStartQuiz.setOnClickListener(v -> {
             NavDirections action = QuizListFragmentDirections.actionQuizListDestToQuizDest();
             Navigation.findNavController(v).navigate(action);
         });

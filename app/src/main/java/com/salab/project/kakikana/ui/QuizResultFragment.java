@@ -76,13 +76,13 @@ public class QuizResultFragment extends Fragment {
 
     private void setupButtonOnClickResponse() {
         // start again
-        mBinding.btnQuizAgain.setOnClickListener(v -> {
+        mBinding.contentQuizResult.btnQuizAgain.setOnClickListener(v -> {
             NavDirections action = QuizResultFragmentDirections.actionQuizResultDestToQuizDest();
             Navigation.findNavController(v).navigate(action);
         });
 
         // end quiz and return
-        mBinding.btnQuizEnd.setOnClickListener(v -> popBackToQuizList());
+        mBinding.contentQuizResult.btnQuizEnd.setOnClickListener(v -> popBackToQuizList());
     }
 
     private void SetupViewModel() {
@@ -104,13 +104,13 @@ public class QuizResultFragment extends Fragment {
 
     private void SetupRecyclerView(List<QuestionResult> questionResultList) {
         mAdapter = new QuestionHistoryAdapter(questionResultList, requireContext());
-        mBinding.rvQuizHistoryBody.setAdapter(mAdapter);
-        mBinding.rvQuizHistoryBody.setLayoutManager(new LinearLayoutManager(requireContext()));
-        mBinding.rvQuizHistoryBody.setHasFixedSize(true);
+        mBinding.contentQuizResult.rvQuizHistoryBody.setAdapter(mAdapter);
+        mBinding.contentQuizResult.rvQuizHistoryBody.setLayoutManager(new LinearLayoutManager(requireContext()));
+        mBinding.contentQuizResult.rvQuizHistoryBody.setHasFixedSize(true);
     }
 
     private void PopulateUI(float correctnessRateInPercent) {
-        mBinding.tvCorrectnessRate.setText(getString(R.string.format_corr_rate_in_percent_rounded, correctnessRateInPercent));
+        mBinding.contentQuizResult.tvCorrectnessRate.setText(getString(R.string.format_corr_rate_in_percent_rounded, correctnessRateInPercent));
 
         String encouragingWords;
         if (correctnessRateInPercent >= 80f) {
@@ -120,7 +120,7 @@ public class QuizResultFragment extends Fragment {
         } else {
             encouragingWords = getString(R.string.text_encouraging_words_low);
         }
-        mBinding.tvEncouragingWords.setText(encouragingWords);
+        mBinding.contentQuizResult.tvEncouragingWords.setText(encouragingWords);
     }
 
 

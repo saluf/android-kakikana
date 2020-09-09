@@ -69,16 +69,16 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupUI(User user) {
-        mBinding.tvProfileName.setText(user.getName());
+        mBinding.contentProfile.tvProfileName.setText(user.getName());
 
         // ref: https://stackoverflow.com/questions/5058880/date-and-time-formatting-depending-on-locale
         Date registerDate = new Date(user.getRegisterTime());
         DateFormat simpleFormat = android.text.format.DateFormat.getMediumDateFormat(requireContext());
-        mBinding.tvProfileRegisterDate.setText(simpleFormat.format(registerDate));
+        mBinding.contentProfile.tvProfileRegisterDate.setText(simpleFormat.format(registerDate));
 
         float corrRate = Math.round((float) user.getTotalCorrect() / user.getTotalTested() * 100);
-        mBinding.tvProfileStatCorrRate.setText(getResources().getString(R.string.format_corr_rate_in_percent_rounded, corrRate));
+        mBinding.contentProfile.tvProfileStatCorrRate.setText(getResources().getString(R.string.format_corr_rate_in_percent_rounded, corrRate));
 
-        mBinding.tvProfileStatNumCorrect.setText(String.valueOf(user.getTotalCorrect()));
+        mBinding.contentProfile.tvProfileStatNumCorrect.setText(String.valueOf(user.getTotalCorrect()));
     }
 }

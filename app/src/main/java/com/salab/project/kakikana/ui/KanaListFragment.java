@@ -67,9 +67,9 @@ public class KanaListFragment extends Fragment implements KanaListAdapter.onKana
 
         // setup RecyclerView
         final KanaListAdapter kanaListAdapter = new KanaListAdapter(new ArrayList<>(), this);
-        mBinding.rvKanaList.setAdapter(kanaListAdapter);
-        mBinding.rvKanaList.setLayoutManager(new GridLayoutManager(requireContext(), SPAN_COUNT));
-        mBinding.rvKanaList.setHasFixedSize(false);
+        mBinding.contentKanaList.rvKanaList.setAdapter(kanaListAdapter);
+        mBinding.contentKanaList.rvKanaList.setLayoutManager(new GridLayoutManager(requireContext(), SPAN_COUNT));
+        mBinding.contentKanaList.rvKanaList.setHasFixedSize(false);
 
         // setup ViewModel (shared with KanaDetail) by scoping to BackStackEntry
         // ref: https://developer.android.com/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel
@@ -82,7 +82,7 @@ public class KanaListFragment extends Fragment implements KanaListAdapter.onKana
         viewModel.getKanaList().observe(getViewLifecycleOwner(), kanaListAdapter::setmKanaList);
 
         // Setup TabLayout
-        mBinding.tabLayoutKanaList.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mBinding.contentKanaList.tabLayoutKanaList.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 // Provide adapter difference options depending on which tab selected
@@ -107,7 +107,7 @@ public class KanaListFragment extends Fragment implements KanaListAdapter.onKana
         });
 
         // Switch tab to saved tab position
-        TabLayout.Tab selectedTab = mBinding.tabLayoutKanaList.getTabAt(selectedTabPosition);
+        TabLayout.Tab selectedTab = mBinding.contentKanaList.tabLayoutKanaList.getTabAt(selectedTabPosition);
         if (selectedTab != null) {selectedTab.select();}
     }
 

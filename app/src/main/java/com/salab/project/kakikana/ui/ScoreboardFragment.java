@@ -55,9 +55,9 @@ public class ScoreboardFragment extends Fragment {
 
         // setup RecyclerView adapter
         mAdapter = new ScoreboardAdapter(requireContext());
-        mBinding.rvScoreboard.setAdapter(mAdapter);
-        mBinding.rvScoreboard.setLayoutManager(new LinearLayoutManager(requireContext()));
-        mBinding.rvScoreboard.setHasFixedSize(true);
+        mBinding.contentScoreboard.rvScoreboard.setAdapter(mAdapter);
+        mBinding.contentScoreboard.rvScoreboard.setLayoutManager(new LinearLayoutManager(requireContext()));
+        mBinding.contentScoreboard.rvScoreboard.setHasFixedSize(true);
 
         // reference to ViewHolder
         ScoreboardViewModel scoreboardViewModel = new ViewModelProvider(this).get(ScoreboardViewModel.class);

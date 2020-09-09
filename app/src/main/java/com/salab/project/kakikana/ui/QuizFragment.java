@@ -84,7 +84,7 @@ public class QuizFragment extends Fragment {
 
         mQuizViewModel.getQuizProgressInPercent().observe(getViewLifecycleOwner(), progress -> {
             // progress is updated
-            mBinding.pbQuizProgress.setProgress(progress);
+            mBinding.contentQuiz.pbQuizProgress.setProgress(progress);
         });
 
         mQuizViewModel.getIsQuizEnded().observe(getViewLifecycleOwner(), isQuizEnded -> {
@@ -102,24 +102,24 @@ public class QuizFragment extends Fragment {
     }
 
     private void setupButtonOnClickResponse() {
-        mBinding.btnConfirmAnswer.setOnClickListener(v -> {
+        mBinding.contentQuiz.btnConfirmAnswer.setOnClickListener(v -> {
             // submit answer
             mQuizViewModel.submitAnswer(
-                    mBinding.drawingView.getCachedBitmap(),
+                    mBinding.contentQuiz.drawingView.getCachedBitmap(),
                     mQuestionTimer.getTimePassed());
         });
 
-        mBinding.btnClearDrawing.setOnClickListener(v -> {
+        mBinding.contentQuiz.btnClearDrawing.setOnClickListener(v -> {
             // request clear drawing canvas
-            mBinding.drawingView.clear();
+            mBinding.contentQuiz.drawingView.clear();
         });
 
-        mBinding.btnNextQuestion.setOnClickListener(v -> {
+        mBinding.contentQuiz.btnNextQuestion.setOnClickListener(v -> {
             // request next question
             mQuizViewModel.nextQuestion();
         });
 
-        mBinding.btnReportIssue.setOnClickListener(v -> {
+        mBinding.contentQuiz.btnReportIssue.setOnClickListener(v -> {
             // users report the recognition could be wrong
             boolean isIssued = mQuizViewModel.onReportIssueClick();
             setReportIssueBtnFlagState(isIssued);
@@ -135,7 +135,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void setReportIssueBtnFlagState(boolean isIssued) {
-        mBinding.btnReportIssue.setImageResource(isIssued ?
+        mBinding.contentQuiz.btnReportIssue.setImageResource(isIssued ?
                 R.drawable.ic_flag : R.drawable.ic_outlined_flag);
     }
 
@@ -143,24 +143,24 @@ public class QuizFragment extends Fragment {
         // show result UI including an indication to tell user if this correct
         // a next button to next question and a flag button to report recognition issue
 
-        mBinding.ivCorrectnessIndicator.setImageResource(correct ? R.drawable.ic_correct : R.drawable.ic_incorrect);
+        mBinding.contentQuiz.ivCorrectnessIndicator.setImageResource(correct ? R.drawable.ic_correct : R.drawable.ic_incorrect);
         setReportIssueBtnFlagState(false); // clear up for new question
         mQuestionTimer.cancel(); // stop countdown timer
 
-        mBinding.groupQuestionQuiz.setVisibility(View.INVISIBLE);
-        mBinding.groupQuestionResult.setVisibility(View.VISIBLE);
+        mBinding.contentQuiz.groupQuestionQuiz.setVisibility(View.INVISIBLE);
+        mBinding.contentQuiz.groupQuestionResult.setVisibility(View.VISIBLE);
     }
 
     private void showQuestionUI() {
-        mBinding.drawingView.clear();
-        mBinding.groupQuestionQuiz.setVisibility(View.VISIBLE);
-        mBinding.groupQuestionResult.setVisibility(View.GONE);
+        mBinding.contentQuiz.drawingView.clear();
+        mBinding.contentQuiz.groupQuestionQuiz.setVisibility(View.VISIBLE);
+        mBinding.contentQuiz.groupQuestionResult.setVisibility(View.GONE);
     }
 
     private void populateNewQuestionUI(Question newQuestion) {
         showQuestionUI();
         // set question title
-        mBinding.tvQuestion.setText(getString(
+        mBinding.contentQuiz.tvQuestion.setText(getString(
                 R.string.format_quiz_question,
                 newQuestion.getRomaji(),
                 newQuestion.getType()));
@@ -169,7 +169,7 @@ public class QuizFragment extends Fragment {
     private void setQuestionCountdownTimer(long quizTimeLimitMilli) {
         // ref:https://stackoverflow.com/questions/10241633/android-progressbar-countdown
 
-        mBinding.pbQuizCountdown.setProgress(100); // reset progress bar
+        mBinding.contentQuiz.pbQuizCountdown.setProgress(100); // reset progress bar
 
         if (mQuestionTimer != null) {
             // cancel last question timer and start new one
@@ -195,14 +195,14 @@ public class QuizFragment extends Fragment {
         public void onTick(long millisUntilFinished) {
             tickCounter++;
             progressInPercent -= progressInPercentPerTick;
-            mBinding.pbQuizCountdown.setProgress(Math.round(progressInPercent));
+            mBinding.contentQuiz.pbQuizCountdown.setProgress(Math.round(progressInPercent));
         }
 
         @Override
         public void onFinish() {
-            mBinding.pbQuizCountdown.setProgress(0);
+            mBinding.contentQuiz.pbQuizCountdown.setProgress(0);
             // countdown to zero and force submitting the answer
-            mBinding.btnConfirmAnswer.performClick();
+            mBinding.contentQuiz.btnConfirmAnswer.performClick();
         }
 
         public int getTimePassed(){

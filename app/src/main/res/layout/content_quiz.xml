@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:elevation="@dimen/elevation_standard"
+    tools:context=".ui.QuizFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ProgressBar
+        android:id="@+id/pb_quiz_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_quiz_progress_bar"
+        android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginTop="@dimen/space_all_to_appbar"
+        android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_quiz_countdown"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_quiz_progress_bar"
+        android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_quiz_progress" />
+
+    <TextView
+        android:id="@+id/tv_question_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_quiz_question_type_to_question"
+        android:text="@string/question_type_write"
+        app:layout_constraintBottom_toTopOf="@+id/tv_question"
+        app:layout_constraintStart_toStartOf="@+id/drawingView" />
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_quiz_periphery_to_drawing_view"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintBottom_toTopOf="@+id/drawingView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+        app:layout_constraintStart_toStartOf="@+id/guideline_center"
+        tools:text="a (hiragana)" />
+
+    <ImageView
+        android:id="@+id/iv_correctness_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/content_desc_quiz_corr_indicator"
+        android:src="@drawable/ic_correct"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/drawingView"
+        app:layout_constraintEnd_toEndOf="@+id/drawingView"
+        tools:visibility="visible" />
+
+    <com.salab.project.kakikana.view.DrawingView
+        android:id="@+id/drawingView"
+        android:layout_width="@dimen/size_quiz_drawing_view"
+        android:layout_height="@dimen/size_quiz_drawing_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+        app:layout_constraintStart_toStartOf="@+id/guideline_center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_clear_drawing"
+        android:layout_width="@dimen/size_btn_standard"
+        android:layout_height="@dimen/size_btn_standard"
+        android:background="#4d000000"
+        android:contentDescription="@string/content_desc_btn_clear"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintStart_toStartOf="@+id/drawingView"
+        app:layout_constraintTop_toTopOf="@+id/drawingView" />
+
+    <Button
+        android:id="@+id/btn_confirm_answer"
+        android:layout_width="@dimen/size_quiz_drawing_view"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_quiz_periphery_to_drawing_view"
+        android:contentDescription="@string/content_desc_btn_confirm"
+        android:text="@string/btn_text_quiz_confirm"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+        app:layout_constraintStart_toStartOf="@+id/guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/drawingView" />
+
+    <Button
+        android:id="@+id/btn_next_question"
+        android:layout_width="@dimen/size_quiz_drawing_view"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_text_quiz_next"
+        android:text="@string/btn_text_quiz_next"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_answer"
+        app:layout_constraintEnd_toEndOf="@+id/btn_confirm_answer"
+        app:layout_constraintStart_toStartOf="@+id/btn_confirm_answer"
+        app:layout_constraintTop_toTopOf="@+id/btn_confirm_answer" />
+
+    <ImageButton
+        android:id="@+id/btn_report_issue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_desc_btn_issue"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_outlined_flag"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/btn_confirm_answer"
+        app:layout_constraintTop_toTopOf="@id/btn_confirm_answer"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_question_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btn_clear_drawing, btn_next_question" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_question_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="iv_correctness_indicator, btn_next_question, btn_report_issue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
