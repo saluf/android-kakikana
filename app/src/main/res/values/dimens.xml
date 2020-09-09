@@ -12,6 +12,8 @@
     <!-- clearance: space, margin, padding -->
     <!-- format: type_[block_]itemA_to_itemB -->
     <dimen name="space_all_to_screen_edge">16dp</dimen>
+    <dimen name="space_all_to_screen_edge_exclude_gutter">8dp</dimen>
+    <dimen name="space_grid_gutter_half">8dp</dimen>
     <dimen name="space_all_to_appbar">8dp</dimen>
     <dimen name="margin_btn_to_all">8dp</dimen>
     <dimen name="margin_quiz_periphery_to_drawing_view">40dp</dimen>
@@ -27,6 +29,7 @@
     <dimen name="margin_detail_header_item_to_center_guideline">8dp</dimen>
     <dimen name="margin_profile_header_item_to_center_guideline">8dp</dimen>
     <dimen name="margin_widget_card_to_edge">8dp</dimen>
+    <dimen name="padding_profile_header_bottom">8dp</dimen>
 
     <!-- others -->
     <dimen name="stroke_width_drawing_view">5dp</dimen>

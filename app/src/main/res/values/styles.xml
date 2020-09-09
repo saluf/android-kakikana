@@ -18,8 +18,22 @@
         <item name="android:layout_marginTop">@dimen/margin_section_label_to_last_section</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
     </style>
+
     <style name="text_subsection_label" parent="text_section_label">
         <item name="android:layout_marginTop">@dimen/margin_subsection_label_to_last_subsection</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
     </style>
+
+    <style name="text_card_stat_label">
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Overline</item>
+    </style>
+
+    <style name="text_card_stat_figure">
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+    </style>
+
 </resources>

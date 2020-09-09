@@ -25,7 +25,7 @@
     <string name="content_desc_item_user">your answer</string>
     <string name="content_desc_quiz_corr_indicator">question correct or not</string>
     <string name="content_desc_stroke_order">kana stroke order</string>
-    <string name="content_desc_profile_photo">profile photo</string>
+    <string name="content_desc_profile_avatar">profile icon</string>
     <string name="content_desc_logo">logo</string>
 
     <!-- Appbar Actions Label-->
@@ -46,6 +46,10 @@
     <string name="label_kana_trend">Correctness Rate</string>
     <string name="label_common_use">Common Use</string>
     <string name="label_profile_name">User Name</string>
+    <string name="label_profile_corr_rate">Correctness Rate</string>
+    <string name="label_profile_num_correct">Num. Correct</string>
+    <string name="label_profile_register_date">Register Date</string>
+    <string name="label_profile_user_stat">Statistics</string>
     <string name="label_user_trend">Overall Correctness Rate</string>
 
     <!--  Header text  -->
@@ -94,8 +98,8 @@
     <string name="text_encouraging_words_low">You can do better next time.</string>
 
     <!--  Formatted strings  -->
-    <string name="format_board_corr_rate_in_percent">%1$.1f %%</string>
-    <string name="format_result_corr_rate_in_percent">%1$.0f %% Correct</string>
+    <string name="format_corr_rate_in_percent">%1$.1f %%</string>
+    <string name="format_corr_rate_in_percent_rounded">%1$.0f %% Correct</string>
     <string name="format_quiz_question">%1$s (%2$s)</string>
     <string name="format_widget_flash_card_desc">%1$s (%2$s)</string>
 

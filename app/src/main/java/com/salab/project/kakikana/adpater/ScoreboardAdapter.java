@@ -47,7 +47,7 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Sc
             corrRate = Math.round((float) selectedUser.getTotalCorrect() / selectedUser.getTotalTested() * 100);
         }
 
-        holder.corrRateTextView.setText(mContext.getResources().getString(R.string.format_board_corr_rate_in_percent, corrRate));
+        holder.corrRateTextView.setText(mContext.getResources().getString(R.string.format_corr_rate_in_percent, corrRate));
     }
 
     @Override

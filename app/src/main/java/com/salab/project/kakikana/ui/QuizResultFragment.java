@@ -110,7 +110,7 @@ public class QuizResultFragment extends Fragment {
     }
 
     private void PopulateUI(float correctnessRateInPercent) {
-        mBinding.tvCorrectnessRate.setText(getString(R.string.format_result_corr_rate_in_percent, correctnessRateInPercent));
+        mBinding.tvCorrectnessRate.setText(getString(R.string.format_corr_rate_in_percent_rounded, correctnessRateInPercent));
 
         String encouragingWords;
         if (correctnessRateInPercent >= 80f) {

@@ -1,7 +1,6 @@
 package com.salab.project.kakikana.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +16,9 @@ import com.salab.project.kakikana.R;
 import com.salab.project.kakikana.databinding.FragmentProfileBinding;
 import com.salab.project.kakikana.model.User;
 import com.salab.project.kakikana.viewmodel.UserViewModel;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Fragment display user-level info, including account info, statistics.
@@ -68,5 +70,15 @@ public class ProfileFragment extends Fragment {
 
     private void setupUI(User user) {
         mBinding.tvProfileName.setText(user.getName());
+
+        // ref: https://stackoverflow.com/questions/5058880/date-and-time-formatting-depending-on-locale
+        Date registerDate = new Date(user.getRegisterTime());
+        DateFormat simpleFormat = android.text.format.DateFormat.getMediumDateFormat(requireContext());
+        mBinding.tvProfileRegisterDate.setText(simpleFormat.format(registerDate));
+
+        float corrRate = Math.round((float) user.getTotalCorrect() / user.getTotalTested() * 100);
+        mBinding.tvProfileStatCorrRate.setText(getResources().getString(R.string.format_corr_rate_in_percent_rounded, corrRate));
+
+        mBinding.tvProfileStatNumCorrect.setText(String.valueOf(user.getTotalCorrect()));
     }
 }
