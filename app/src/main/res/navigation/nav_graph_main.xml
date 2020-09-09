@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_quiz_list">
         <action
             android:id="@+id/action_quiz_list_dest_to_quiz_dest"
-            app:destination="@id/quiz_dest" />
+            app:destination="@id/quiz_dest"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/quiz_dest"
@@ -21,7 +23,9 @@
         tools:layout="@layout/fragment_quiz">
         <action
             android:id="@+id/action_quizFragment_to_quizResultFragment"
-            app:destination="@id/quiz_result_dest" />
+            app:destination="@id/quiz_result_dest"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="QuizId"
             android:defaultValue="-1"
@@ -35,11 +39,19 @@
         <action
             android:id="@+id/action_quizResultFragment_to_quizListFragment"
             app:destination="@id/quiz_list_dest"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/quiz_list_dest"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_quiz_result_dest_to_quiz_dest"
             app:destination="@id/quiz_dest"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/quiz_dest"
             app:popUpToInclusive="true" />
     </fragment>
@@ -75,8 +87,9 @@
         <action
             android:id="@+id/action_setting_dest_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/nav_graph_main"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/nav_graph_main" />
     </fragment>
     <action
         android:id="@+id/action_global_kanaDetailFragment"
@@ -89,6 +102,10 @@
         <action
             android:id="@+id/action_loginFragment_to_quiz_list_dest"
             app:destination="@id/quiz_list_dest"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/nav_graph_main"
             app:popUpToInclusive="true" />
     </fragment>
