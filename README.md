@@ -49,10 +49,10 @@ private static Map<String, Object> getClassifierOptions(boolean isHiragana) {
     }
 ```
 
-## Snapshots
-<img src="/snapshots/login.png" width="150" height="308"/>  <img src="/snapshots/quiz.png" width="150" height="308"/>   <img src="/snapshots/quiz_result.png" width="150" height="308"/>    <img src="/snapshots/kana_list.png" width="150" height="308"/>
+## Screenshots
+<img src="/screenshots/login.png" width="150" height="308"/>  <img src="/screenshots/quiz.png" width="150" height="308"/>   <img src="/screenshots/quiz_result.png" width="150" height="308"/>    <img src="/screenshots/kana_list.png" width="150" height="308"/>
 
-<img src="/snapshots/kana_detail.png" width="150" height="308"/>    <img src="/snapshots/scoreboard.png" width="150" height="308"/> <img src="/snapshots/profile.png" width="150" height="308"/>    <img src="/snapshots/widget.png" width="150" height="308"/>
+<img src="/screenshots/kana_detail.png" width="150" height="308"/>    <img src="/screenshots/scoreboard.png" width="150" height="308"/> <img src="/screenshots/profile.png" width="150" height="308"/>    <img src="/screenshots/widget.png" width="150" height="308"/>
 
 ## Licence
 The work is under Apache License Version 2.0. Please check License file for detail.
