@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapper_item_flash_card"
+    android:layout_width="@dimen/size_widget_flash_card"
+    android:layout_height="@dimen/size_widget_flash_card"
+    android:background="@color/colorWidgetFlashCard"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_flash_card_kana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_widget_card_to_edge"
+        android:gravity="center_horizontal|top"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+        tools:text="あ" />
+
+    <TextView
+        android:id="@+id/tv_flash_last_card_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_widget_card_to_edge"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:visibility="gone"
+        tools:text="@string/text_widget_last_flash_card" />
+
+    <TextView
+        android:id="@+id/tv_flash_card_kana_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_widget_card_to_edge"
+        android:gravity="center_horizontal|bottom"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+        tools:text="a (hiragana) " />
+
+</LinearLayout>

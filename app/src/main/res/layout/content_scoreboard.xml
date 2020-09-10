@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:elevation="@dimen/elevation_standard"
+    tools:context=".ui.ScoreboardFragment">
+
+    <LinearLayout
+        android:id="@+id/wrapper_scoreboard_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_all_to_appbar"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/rv_scoreboard"
+        app:layout_constraintEnd_toEndOf="@+id/rv_scoreboard"
+        app:layout_constraintStart_toStartOf="@+id/rv_scoreboard"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_header_rank"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@string/header_board_rank" />
+
+        <TextView
+            android:id="@+id/tv_header_name"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="@string/header_board_name" />
+
+        <TextView
+            android:id="@+id/tv_header_num_correct"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@string/header_board_num_correct" />
+
+        <TextView
+            android:id="@+id/tv_header_correctness_rate"
+            style="@style/text_table_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="@string/header_board_correctness_rate" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_scoreboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrapper_scoreboard_header"
+        tools:itemCount="100"
+        tools:listitem="@layout/item_scoreboard" />
+</androidx.constraintlayout.widget.ConstraintLayout>

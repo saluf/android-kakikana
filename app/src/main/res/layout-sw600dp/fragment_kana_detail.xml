@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.KanaDetailFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_detail_vertical_quarter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_detail_vertical_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/iv_detail_stroke_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_all_to_screen_edge"
+            android:layout_marginTop="@dimen/space_all_to_appbar"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_desc_stroke_order"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_quarter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_image_placeholder" />
+
+        <TextView
+            android:id="@+id/tv_detail_romaji_label"
+            style="@style/text_subsection_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_all_to_appbar"
+            android:gravity="center_horizontal"
+            android:text="@string/label_detail_romaji"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_quarter"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_detail_romaji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_subsection_content_to_subsection_label"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_romaji_label"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_romaji_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_romaji_label"
+            tools:text="a" />
+
+        <TextView
+            android:id="@+id/tv_detail_type_label"
+            style="@style/text_subsection_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/label_detail_type"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_romaji"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_romaji"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_romaji" />
+
+        <TextView
+            android:id="@+id/tv_detail_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_subsection_content_to_subsection_label"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_type_label"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_type_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_type_label"
+            tools:text="hiragana" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_detail_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="iv_detail_stroke_order, tv_detail_type" />
+
+        <TextView
+            android:id="@+id/tv_detail_stat_label"
+            style="@style/text_section_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_detail_kana_stat"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier_detail_header" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridlayout_detail_stat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_all_to_screen_edge_exclude_gutter"
+            android:layout_marginTop="@dimen/margin_section_content_to_section_label"
+            app:columnCount="@integer/grid_count_profile_stat"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_stat_label">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_grid_gutter_half"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_row="0">
+
+                <LinearLayout
+                    android:id="@+id/wrapper_detail_corr_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_detail_stat_corr_rate_label"
+                        style="@style/text_card_stat_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_corr_rate" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_stat_corr_rate"
+                        style="@style/text_card_stat_figure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="100%" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_grid_gutter_half"
+                app:layout_column="1"
+                app:layout_columnWeight="1"
+                app:layout_row="0">
+
+                <LinearLayout
+                    android:id="@+id/wrapper_detail_num_corr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_detail_stat_num_correct_label"
+                        style="@style/text_card_stat_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_num_correct" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_stat_num_correct"
+                        style="@style/text_card_stat_figure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="99999" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <TextView
+            android:id="@+id/tv_kana_common_use_label"
+            style="@style/text_section_label"
+            android:layout_marginTop="@dimen/space_all_to_appbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_common_use"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/wrapper_detail_common_use_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_section_content_to_section_label"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/rv_detail_common_use"
+            app:layout_constraintStart_toStartOf="@+id/rv_detail_common_use"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kana_common_use_label">
+
+            <TextView
+                android:id="@+id/tv_header_kanji"
+                style="@style/text_table_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/header_detail_kanji" />
+
+            <TextView
+                android:id="@+id/tv_header_kana"
+                style="@style/text_table_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/header_detail_kana" />
+
+            <TextView
+                android:id="@+id/tv_header_meaning"
+                style="@style/text_table_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/header_detail_meaning" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_common_use"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_detail_vertical_center"
+            app:layout_constraintTop_toBottomOf="@+id/wrapper_detail_common_use_header"
+            tools:listitem="@layout/item_common_use" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

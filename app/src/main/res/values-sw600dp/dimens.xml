@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- size: width, height -->
+    <dimen name="size_quiz_drawing_view">300dp</dimen>
+    <dimen name="height_quiz_progress_bar">30dp</dimen>
+    <dimen name="height_quiz_history">300dp</dimen>
+
+    <!-- clearance: space, margin, padding -->
+    <!-- format: type_[block_]itemA_to_itemB -->
+    <dimen name="space_all_to_screen_edge">24dp</dimen>
+    <dimen name="space_all_to_screen_edge_exclude_gutter">12dp</dimen>
+    <dimen name="space_grid_gutter_half">12dp</dimen>
+    <dimen name="space_all_to_appbar">16dp</dimen>
+
+    <!-- others -->
+    <dimen name="stroke_width_drawing_view">7dp</dimen>
+
+</resources>

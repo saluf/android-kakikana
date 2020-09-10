@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.salab.project.kakikana"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Enables viewBinding feature to replace findViewById()
+    buildFeatures {
+        viewBinding true
+    }
+
+    // tell gradle not to compress TensorFlow model
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    // Navigation components
+    implementation "androidx.navigation:navigation-fragment:2.3.0"
+    implementation "androidx.navigation:navigation-ui:2.3.0"
+
+    // On-device image recognition
+    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+
+    // Web data fetch
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Json processing
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Load GIF
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Setting preferences
+    implementation 'androidx.preference:preference:1.1.1'
+
+    // Remote database and user authentication
+    implementation 'com.google.firebase:firebase-database:19.4.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.2'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Unit tests and instrumental tests
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+}

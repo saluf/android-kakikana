@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- size: width, height -->
+    <dimen name="size_quiz_drawing_view">200dp</dimen>
+    <dimen name="size_btn_small">24dp</dimen>
+    <dimen name="size_btn_standard">24dp</dimen>
+    <dimen name="size_saved_quiz_result_bitmap_size">96dp</dimen>
+    <dimen name="size_widget_flash_card">150dp</dimen>
+    <dimen name="height_quiz_progress_bar">20dp</dimen>
+    <dimen name="height_quiz_history">300dp</dimen>
+
+    <!-- clearance: space, margin, padding -->
+    <!-- format: type_[block_]itemA_to_itemB -->
+    <dimen name="space_all_to_screen_edge">16dp</dimen>
+    <dimen name="space_all_to_screen_edge_exclude_gutter">8dp</dimen>
+    <dimen name="space_grid_gutter_half">8dp</dimen>
+    <dimen name="space_all_to_appbar">8dp</dimen>
+    <dimen name="margin_btn_to_all">8dp</dimen>
+    <dimen name="margin_quiz_periphery_to_drawing_view">40dp</dimen>
+    <dimen name="margin_quiz_question_type_to_question">8dp</dimen>
+    <dimen name="margin_result_label_to_history">8dp</dimen>
+    <dimen name="margin_result_correctness_to_words">8dp</dimen>
+    <dimen name="margin_kanas_list_to_tabs">8dp</dimen>
+    <dimen name="margin_kanas_item_to_item_half">4dp</dimen>
+    <dimen name="margin_section_label_to_last_section">24dp</dimen>
+    <dimen name="margin_section_content_to_section_label">8dp</dimen>
+    <dimen name="margin_subsection_label_to_last_subsection">16dp</dimen>
+    <dimen name="margin_subsection_content_to_subsection_label">8dp</dimen>
+    <dimen name="margin_detail_header_item_to_center_guideline">8dp</dimen>
+    <dimen name="margin_profile_header_item_to_center_guideline">8dp</dimen>
+    <dimen name="margin_widget_card_to_edge">8dp</dimen>
+    <dimen name="padding_profile_header_bottom">8dp</dimen>
+
+    <!-- others -->
+    <dimen name="stroke_width_drawing_view">5dp</dimen>
+    <dimen name="elevation_standard">4dp</dimen>
+
+</resources>

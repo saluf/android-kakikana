@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Kakikana</string>
+
+    <!--  Labels of destinations  -->
+    <string name="quiz_list_dest_label">Quiz List</string>
+    <string name="kana_list_dest_label">Kana List</string>
+    <string name="kana_detail_dest_label">Kana Detail</string>
+    <string name="scoreboard_dest_label">Scoreboard</string>
+    <string name="profile_dest_label">Profile</string>
+    <string name="setting_dest_label">Setting</string>
+    <string name="quiz_dest_label">Quiz</string>
+    <string name="quiz_result_dest_label">Quiz Result</string>
+    <string name="login_dest_label">Login Result</string>
+
+    <!--  Quiz question types  -->
+    <string name="question_type_write">please write:</string>
+
+    <!--  Content descriptions  -->
+    <string name="content_desc_btn_confirm">confirm answer</string>
+    <string name="content_desc_btn_next">next question</string>
+    <string name="content_desc_btn_clear">clear drawing</string>
+    <string name="content_desc_btn_issue">report question issue</string>
+    <string name="content_desc_item_result">question correct or not</string>
+    <string name="content_desc_item_correct">correct answer</string>
+    <string name="content_desc_item_user">your answer</string>
+    <string name="content_desc_quiz_corr_indicator">question correct or not</string>
+    <string name="content_desc_stroke_order">kana stroke order</string>
+    <string name="content_desc_profile_avatar">profile icon</string>
+    <string name="content_desc_logo">logo</string>
+
+    <!-- Appbar Actions Label-->
+    <string name="action_cancel_quiz">Cancel Quiz</string>
+
+    <!--  Button text  -->
+    <string name="btn_text_quiz_confirm">Confirm</string>
+    <string name="btn_text_quiz_next">Next</string>
+    <string name="btn_text_start_quiz">Free Competition Mode</string>
+    <string name="btn_text_quiz_end">End</string>
+    <string name="btn_text_quiz_again">Again</string>
+    <string name="btn_text_sign_in_anonymous">Sign in latter</string>
+
+    <!--  Label text  -->
+    <string name="label_result_quiz_history">History</string>
+    <string name="label_corr_rate">Correctness Rate</string>
+    <string name="label_num_correct">Num. Correct</string>
+    <string name="label_detail_romaji">Romaji</string>
+    <string name="label_detail_type">Type</string>
+    <string name="label_detail_kana_stat">Statistics</string>
+    <string name="label_common_use">Common Use</string>
+    <string name="label_profile_name">User Name</string>
+    <string name="label_profile_register_date">Register Date</string>
+    <string name="label_profile_user_stat">Statistics</string>
+    <string name="label_user_trend">Overall Correctness Rate</string>
+
+    <!--  Header text  -->
+    <string name="header_result_result">Result</string>
+    <string name="header_result_question">Question</string>
+    <string name="header_result_correct_answer">Correct</string>
+    <string name="header_result_user_answer">Yours</string>
+    <string name="header_detail_kanji">Kanji</string>
+    <string name="header_detail_kana">Kana</string>
+    <string name="header_detail_meaning">Meaning</string>
+    <string name="header_board_rank">Rank</string>
+    <string name="header_board_name">User</string>
+    <string name="header_board_num_correct">Correct</string>
+    <string name="header_board_correctness_rate">Correctness Rate</string>
+
+    <!--  Tab text  -->
+    <string name="tab_kana_hiragana">hiragana</string>
+    <string name="tab_kana_katakana">katakana</string>
+
+    <!-- Preference text -->
+    <string name="pref_title_user_category">User</string>>
+    <string name="pref_title_action_link_google">Link Google account</string>
+    <string name="pref_title_action_sign_out">Sign Out</string>
+    <string name="pref_key_user_category" translatable="false">pref_user_category</string>
+    <string name="pref_key_action_link_google" translatable="false">pref_action_link_google</string>
+    <string name="pref_key_action_sign_out" translatable="false">pref_action_sign_out</string>
+
+    <string name="pref_lang_entry_english" translatable="false">English</string>
+    <string name="pref_lang_entry_chinese_tw" translatable="false">繁體中文</string>
+    <string name="pref_lang_value_english" translatable="false">pref_lang_english</string>
+    <string name="pref_lang_value_chinese_tw" translatable="false">pref_lang_chinese_tw</string>
+
+    <!--  Quiz result encouraging text  -->
+    <string name="text_encouraging_words_best">Awesome!!</string>
+    <string name="text_encouraging_words_medium">You did great!</string>
+    <string name="text_encouraging_words_low">You can do better next time.</string>
+
+    <!--  Formatted strings  -->
+    <string name="format_corr_rate_in_percent">%1$.1f %%</string>
+    <string name="format_corr_rate_in_percent_rounded">%1$.0f %%</string>
+    <string name="format_quiz_corr_rate_in_percent_rounded">%1$.0f %% Correct</string>
+    <string name="format_quiz_question">%1$s (%2$s)</string>
+    <string name="format_widget_flash_card_desc">%1$s (%2$s)</string>
+
+    <!-- Widget -->
+    <string name="text_widget_last_flash_card">Great Job! You finish reviews. Take a cup of tea and come back latter.</string>
+
+    <!-- Others -->
+    <string name="text_sign_in_message">Sign in to keep all your progress safe</string>
+
+</resources>

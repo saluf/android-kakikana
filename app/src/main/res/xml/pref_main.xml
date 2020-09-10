@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="@string/pref_key_user_category"
+        android:title="@string/pref_title_user_category">
+        <Preference
+            android:key="@string/pref_key_action_sign_out"
+            android:title="@string/pref_title_action_sign_out" />
+        <Preference
+            app:isPreferenceVisible="false"
+            android:icon="@drawable/common_google_signin_btn_icon_light"
+            android:key="@string/pref_key_action_link_google"
+            android:title="@string/pref_title_action_link_google" />
+    </PreferenceCategory>
+</PreferenceScreen>
