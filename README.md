@@ -3,7 +3,7 @@ As a Japanese learner I **learned Furigana** (Japanese alphabets consist of Hira
 
 Note: This work is also my capstone project of the Udacity Android Developer Nanodegree. It has been reviewed by experienced engineer(s) and passed the rubrics.
 
-## Features
+## Technical Features
 
 - **On-device ML**: With Tensorflow Lite, transfer pre-trained model to Android device
 - **Signle-Activty flow**: Apply with Jetpack Navigation component to construct UI flows with Fragments.
@@ -50,7 +50,9 @@ private static Map<String, Object> getClassifierOptions(boolean isHiragana) {
 ```
 
 ## Snapshots
+<img src="/snapshots/login.png" width="150" height="308"/>  <img src="/snapshots/quiz.png" width="150" height="308"/>   <img src="/snapshots/quiz_result.png" width="150" height="308"/>    <img src="/snapshots/kana_list.png" width="150" height="308"/>
 
+<img src="/snapshots/kana_detail.png" width="150" height="308"/>    <img src="/snapshots/scoreboard.png" width="150" height="308"/> <img src="/snapshots/profile.png" width="150" height="308"/>    <img src="/snapshots/widget.png" width="150" height="308"/>
 
 ## Licence
 The work is under Apache License Version 2.0. Please check License file for detail.
