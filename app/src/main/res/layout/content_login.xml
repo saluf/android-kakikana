@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/content_desc_logo"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_sign_in_google"
         app:layout_constraintStart_toStartOf="@+id/btn_sign_in_google"
