@@ -23,6 +23,7 @@
         android:layout_marginStart="@dimen/space_all_to_screen_edge"
         android:layout_marginTop="@dimen/space_all_to_appbar"
         android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        android:progressDrawable="@drawable/quiz_progress_background_drawable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +34,9 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_quiz_progress_bar"
         android:layout_marginStart="@dimen/space_all_to_screen_edge"
+        android:layout_marginTop="@dimen/margin_quiz_progressbar_to_progressbar"
         android:layout_marginEnd="@dimen/space_all_to_screen_edge"
+        android:progressDrawable="@drawable/quiz_countdown_background_drawable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pb_quiz_progress" />
@@ -91,6 +94,7 @@
 
     <Button
         android:id="@+id/btn_confirm_answer"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="@dimen/size_quiz_drawing_view"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_quiz_periphery_to_drawing_view"
@@ -102,11 +106,11 @@
 
     <Button
         android:id="@+id/btn_next_question"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="@dimen/size_quiz_drawing_view"
         android:layout_height="wrap_content"
         android:contentDescription="@string/btn_text_quiz_next"
         android:text="@string/btn_text_quiz_next"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_answer"
         app:layout_constraintEnd_toEndOf="@+id/btn_confirm_answer"
         app:layout_constraintStart_toStartOf="@+id/btn_confirm_answer"
@@ -116,8 +120,8 @@
         android:id="@+id/btn_report_issue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/content_desc_btn_issue"
         android:background="#FFFFFF"
+        android:contentDescription="@string/content_desc_btn_issue"
         android:src="@drawable/ic_outlined_flag"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/btn_confirm_answer"
@@ -128,12 +132,13 @@
         android:id="@+id/group_question_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btn_clear_drawing, btn_next_question" />
+        app:constraint_referenced_ids="btn_clear_drawing, btn_confirm_answer" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_question_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="iv_correctness_indicator, btn_next_question, btn_report_issue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

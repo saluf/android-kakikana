@@ -99,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
             }
+            // hide support action bar
+            if (destination.getId() == R.id.loginFragment) {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().hide();
+                }
+            } else {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().show();
+                }
+            }
         });
     }
 }

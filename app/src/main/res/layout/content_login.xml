@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@color/colorBackground"
+    android:background="@color/colorPrimary"
     android:elevation="@dimen/elevation_standard"
     tools:context=".ui.LoginFragment">
 
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/content_desc_logo"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_sign_in_google"
         app:layout_constraintStart_toStartOf="@+id/btn_sign_in_google"
@@ -22,10 +22,25 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_logo"
+        app:layout_constraintStart_toStartOf="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tv_sign_in_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_sign_in_message"
+        android:textColor="@color/colorTextLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_btn_to_all"
         android:text="@string/btn_text_sign_in_anonymous"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_sign_in_google" />

@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_btn_to_all"
         android:text="@string/btn_text_quiz_again"
+        style="@style/Widget.AppCompat.Button.Colored"
         app:layout_constraintEnd_toStartOf="@+id/btn_quiz_end"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,6 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_btn_to_all"
         android:text="@string/btn_text_quiz_end"
+        style="@style/Widget.AppCompat.Button.Colored"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_quiz_again"
         app:layout_constraintTop_toBottomOf="@+id/rv_quiz_history_body" />

@@ -12,12 +12,11 @@
         android:id="@+id/tabLayout_kana_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/colorTextLight">
+        app:tabTextColor="@color/colorPrimaryLight">
 
         <!-- TabItem has no its own id. It can be accessed via TabLayout-->
         <com.google.android.material.tabs.TabItem

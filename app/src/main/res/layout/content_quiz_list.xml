@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +8,45 @@
     android:elevation="@dimen/elevation_standard"
     tools:context=".ui.QuizListFragment">
 
+    <!-- TODO: upgrade to AdaptiveView to accommodate more cards -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/wrapper_quiz_card"
+        android:layout_width="@dimen/width_quiz_card"
+        android:layout_height="@dimen/height_quiz_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_quiz_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_quiz_card_front"
+            android:text="@string/btn_text_start_quiz" />
+
+        <TextView
+            android:id="@+id/tv_quiz_card_name"
+            style="@style/text_quiz_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quiz_card_name_0" />
+    </androidx.cardview.widget.CardView>
+
+
     <Button
         android:id="@+id/btn_start_quiz"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btn_text_start_quiz" />
+        android:text="@string/btn_text_start_quiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrapper_quiz_card" />
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

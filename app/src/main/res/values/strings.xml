@@ -15,6 +15,9 @@
     <!--  Quiz question types  -->
     <string name="question_type_write">please write:</string>
 
+    <!-- Quiz card names -->
+    <string name="quiz_card_name_0">Free Competition Mode</string>
+
     <!--  Content descriptions  -->
     <string name="content_desc_btn_confirm">confirm answer</string>
     <string name="content_desc_btn_next">next question</string>
@@ -34,7 +37,7 @@
     <!--  Button text  -->
     <string name="btn_text_quiz_confirm">Confirm</string>
     <string name="btn_text_quiz_next">Next</string>
-    <string name="btn_text_start_quiz">Free Competition Mode</string>
+    <string name="btn_text_start_quiz">Start Quiz</string>
     <string name="btn_text_quiz_end">End</string>
     <string name="btn_text_quiz_again">Again</string>
     <string name="btn_text_sign_in_anonymous">Sign in latter</string>
