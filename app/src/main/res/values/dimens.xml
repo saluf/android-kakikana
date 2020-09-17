@@ -20,6 +20,7 @@
     <dimen name="margin_btn_to_all">8dp</dimen>
     <dimen name="margin_quiz_periphery_to_drawing_view">40dp</dimen>
     <dimen name="margin_quiz_question_type_to_question">8dp</dimen>
+    <dimen name="margin_quiz_progressbar_to_progressbar">4dp</dimen>
     <dimen name="margin_result_label_to_history">8dp</dimen>
     <dimen name="margin_result_correctness_to_words">8dp</dimen>
     <dimen name="margin_kanas_list_to_tabs">8dp</dimen>
