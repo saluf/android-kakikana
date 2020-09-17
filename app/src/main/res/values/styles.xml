@@ -32,7 +32,14 @@
     <style name="text_card_stat_figure">
         <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline3
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline3</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="text_quiz_card_name">
+        <item name="android:gravity">center|top</item>
+        <item name="android:padding">@dimen/padding_quiz_card_name</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
         </item>
     </style>
 
