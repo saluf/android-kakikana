@@ -1,12 +1,12 @@
 # Kakikana 書き仮名
-As a Japanese learner I **learned Furigana** (Japanese alphabets consist of Hiragana and Katakana) by typing and recognizing with assitence of many great apps. However, when it comes to writing, it is still challenging. As a result, this work is to help you and myself **learn by writing with** on-device TensorFlow Lite convolutional neural network (CNN) techniques. 
+As a Japanese learner I **learned Furigana** (Japanese alphabets consist of Hiragana and Katakana) by typing and recognizing with assistance of many great apps. However, when it comes to writing, it is still challenging. As a result, this work is to help users and myself **learn by writing** with on-device TensorFlow Lite convolutional neural network (CNN) techniques. 
 
 Note: This work is also my capstone project of the Udacity Android Developer Nanodegree. It has been reviewed by experienced engineer(s) and passed the rubrics.
 
 ## Technical Features
 
 - **On-device ML**: With Tensorflow Lite, transfer pre-trained model to Android device
-- **Signle-Activty flow**: Apply with Jetpack Navigation component to construct UI flows with Fragments.
+- **Single-Activity flow**: Apply with Jetpack Navigation component to construct UI flows with Fragments.
 - **MVVM Structure**: Follow recommended structure to organize code in UI / ViewModel(+LiveData) / Repository layers.
 - **Firebase Services**: Authenticate users through Google and preserve data on Firebase Realtime Database
 
@@ -17,7 +17,7 @@ $ git clone https://github.com/saluf/android-kakikana.git
 ```
 
 ### Firebase Realtime Database & Authentication
-The data persistence relies on Firebase Realtime Database and Firebase Authentication which authenticates users with Google accounts (data preservation across devices), and allows users to sign in anonymouly.
+The data persistence relies on Firebase Realtime Database and Firebase Authentication which authenticates users with Google accounts (data preservation across devices), and allows users to sign in anonymously.
 
 1. [Setup your Firebase console](https://firebase.google.com/docs/android/setup#console)
 2. Enable **Realtime Database** and **Authentication (Anonymous & Google)**
@@ -30,7 +30,7 @@ The data persistence relies on Firebase Realtime Database and Firebase Authentic
 ```
 
 ### TensorFlow Lite
-The work requires pre-trained converted TensorFlow models. The models training scripts are desripted [here](https://github.com/saluf/ml-furigana-handwriting-recognition).
+The work requires pre-trained converted TensorFlow models. The models training scripts are described [here](https://github.com/saluf/ml-furigana-handwriting-recognition).
 
 1. Train or get two models, one for Hiragana, the other for Katakana
 2. Put the models in **Assets** folder. Labels are already included in the repo
@@ -55,4 +55,5 @@ private static Map<String, Object> getClassifierOptions(boolean isHiragana) {
 <img src="/screenshots/kana_detail.png" width="150" height="308"/>    <img src="/screenshots/scoreboard.png" width="150" height="308"/> <img src="/screenshots/profile.png" width="150" height="308"/>    <img src="/screenshots/widget.png" width="150" height="308"/>
 
 ## Licence
-The work is under Apache License Version 2.0. Please check License file for detail.
+The work is under Apache License Version 2.0. Please check the License file for details.
+
