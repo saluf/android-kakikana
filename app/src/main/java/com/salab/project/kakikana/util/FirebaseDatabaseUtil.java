@@ -122,7 +122,7 @@ public class FirebaseDatabaseUtil {
 
                     // avoid overwriting all user data, so use map to update stats only
                     Map<String, Object> statMap = new HashMap<>();
-                    statMap.put("totalCorrect", user.getTotalCorrect() + quizResult.getTotalCorrected());
+                    statMap.put("totalCorrect", user.getTotalCorrect() + quizResult.getTotalCorrect());
                     statMap.put("totalTested", user.getTotalTested() + quizResult.getTotalTested());
 
                     getUserDatabaseReference(uid)

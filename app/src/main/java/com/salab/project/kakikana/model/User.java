@@ -7,10 +7,8 @@ import java.util.Map;
 
 public class User {
 
-    // TODO: consider separate private User data from public one
     private String name = "Anonymous";
     private long registerTime;
-    private long lastLoginTime;
     private int totalCorrect = 0;
     private int totalTested = 0;
 
@@ -31,14 +29,6 @@ public class User {
 
     public void setRegisterTime(long registerTime) {
         this.registerTime = registerTime;
-    }
-
-    public long getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(long lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
     }
 
     public int getTotalCorrect() {
@@ -66,10 +56,8 @@ public class User {
         if (isServerTime) {
             // replace with reserved keyword to fill it with server time
             result.put("registerTime", ServerValue.TIMESTAMP);
-            result.put("lastLoginTime", ServerValue.TIMESTAMP);
         } else {
             result.put("registerTime", registerTime);
-            result.put("lastLoginTime", lastLoginTime);
         }
         return result;
     }
