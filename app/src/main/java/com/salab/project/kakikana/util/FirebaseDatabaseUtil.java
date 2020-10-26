@@ -3,12 +3,15 @@ package com.salab.project.kakikana.util;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.salab.project.kakikana.model.QuizResult;
 import com.salab.project.kakikana.model.User;
@@ -146,6 +149,39 @@ public class FirebaseDatabaseUtil {
         });
     }
 
+    public static void updatedUserQuizStatTransaction(String uid, QuizResult quizResult) {
+
+        getUserDatabaseReference(uid).runTransaction(new Transaction.Handler() {
+
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+
+                User userData = currentData.getValue(User.class);
+
+                if (userData == null) {
+                    // User data does not exist, create one
+                    Log.d(TAG, "User data is missing, create one");
+                    currentData.setValue(new User());
+                } else {
+                    // Update current statics
+                    userData.updateTestStatics(quizResult.getTotalCorrect(), quizResult.getTotalTested());
+                    currentData.setValue(userData);
+                }
+                return Transaction.success(currentData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                if (committed) {
+                    Log.d(TAG, "user quiz statistics update successfully");
+                } else {
+                    Log.d(TAG, "user quiz statistics failed to update: " + error);
+                }
+            }
+        });
+    }
+
     public static void updatedUserKanaQuizStat(String uid, Map<String, UserKana> kanaQuizResult) {
 
         for (Map.Entry<String, UserKana> result : kanaQuizResult.entrySet()) {
@@ -176,6 +212,39 @@ public class FirebaseDatabaseUtil {
                         }
                     }
             );
+        }
+    }
+
+    public static void updatedUserKanaQuizStatTransaction(String uid, Map<String, UserKana> kanaQuizResult) {
+
+        for (Map.Entry<String, UserKana> result : kanaQuizResult.entrySet()) {
+            String kanaId = result.getKey();
+            UserKana newUserKana = result.getValue();
+            getUserKanaDatabaseReference(uid, kanaId).runTransaction(new Transaction.Handler() {
+                @NonNull
+                @Override
+                public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+
+                    UserKana existedUserKana = currentData.getValue(UserKana.class);
+                    if (existedUserKana == null) {
+                        // this kana does not be tested before
+                        existedUserKana = new UserKana();
+                    }
+
+                    existedUserKana.mergeUserKanas(newUserKana);
+                    currentData.setValue(existedUserKana);
+                    return Transaction.success(currentData);
+                }
+
+                @Override
+                public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                    if (committed) {
+                        Log.d(TAG, "user kana quiz " + kanaId + " statistics update successfully");
+                    } else {
+                        Log.d(TAG, "user kana  quiz statistics failed to update: " + error);
+                    }
+                }
+            });
         }
     }
 

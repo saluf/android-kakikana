@@ -35,8 +35,8 @@ import java.util.Map;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.createUserDataIfNotExist;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.getScoreboardUsersQuery;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.getUserDatabaseReference;
-import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserKanaQuizStat;
-import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserQuizStat;
+import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserKanaQuizStatTransaction;
+import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.updatedUserQuizStatTransaction;
 import static com.salab.project.kakikana.util.FirebaseDatabaseUtil.uploadQuizResult;
 import static com.salab.project.kakikana.util.FlashCardGeneratorUtil.simpleRandomCardGenerator;
 import static com.salab.project.kakikana.util.KanaUtil.processJsonIntoKana;
@@ -199,8 +199,8 @@ public class Repository {
             ExecutorStore.getInstance().getDiskIO().execute(() -> {
                 // run on background thread
                 uploadQuizResult(uid, quizResult);
-                updatedUserQuizStat(uid, quizResult);
-                updatedUserKanaQuizStat(uid, kanaQuizResult);
+                updatedUserQuizStatTransaction(uid, quizResult);
+                updatedUserKanaQuizStatTransaction(uid, kanaQuizResult);
             });
 
         } else {

@@ -47,6 +47,11 @@ public class User {
         this.totalTested = totalTested;
     }
 
+    public void updateTestStatics(int addedCorrect, int addedTested) {
+        this.totalCorrect += addedCorrect;
+        this.totalTested += addedTested;
+    }
+
     public Map<String, Object> toMap(boolean isServerTime) {
         // map format is easier to manipulate before update or add to Firebase database
         Map<String, Object> result = new HashMap<>();
