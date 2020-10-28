@@ -23,7 +23,7 @@ public class QuizViewModel extends AndroidViewModel {
 
     // constants
     private static final String TAG = QuizViewModel.class.getSimpleName();
-    private static final int numQuestions = 3;
+    private static final int numQuestions = 5;
     private static final int quizId = 0;
 
     // global variables
