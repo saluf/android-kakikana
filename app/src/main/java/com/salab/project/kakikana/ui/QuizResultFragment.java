@@ -97,7 +97,7 @@ public class QuizResultFragment extends Fragment {
     private float getCorrectnessRateInPercent(QuizResult quizResult) {
         float correctnessRateInPercent = 0f;
         if (quizResult.getTotalTested() != 0f) {
-            correctnessRateInPercent = Math.round((float) quizResult.getTotalCorrected() / quizResult.getTotalTested() * 100);
+            correctnessRateInPercent = Math.round((float) quizResult.getTotalCorrect() / quizResult.getTotalTested() * 100);
         }
         return correctnessRateInPercent;
     }

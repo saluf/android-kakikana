@@ -10,8 +10,7 @@ import java.util.Map;
 public class QuizResult {
 
     private Long timestamp;
-    private int testId = 0;
-    private int totalCorrected = 0;
+    private int totalCorrect = 0;
     private int totalTested = 0;
     private List<QuestionResult> questionResultList = new ArrayList<>();
 
@@ -25,17 +24,9 @@ public class QuizResult {
             // if users flag the question as issued, then it will not be counted into score
             totalTested++;
             if (questionResult.isCorrect()) {
-                totalCorrected++;
+                totalCorrect++;
             }
         }
-    }
-
-    public int getTestId() {
-        return testId;
-    }
-
-    public void setTestId(int testId) {
-        this.testId = testId;
     }
 
     public Long getTimestamp() {
@@ -46,12 +37,12 @@ public class QuizResult {
         this.timestamp = timestamp;
     }
 
-    public int getTotalCorrected() {
-        return totalCorrected;
+    public int getTotalCorrect() {
+        return totalCorrect;
     }
 
-    public void setTotalCorrected(int totalCorrected) {
-        this.totalCorrected = totalCorrected;
+    public void setTotalCorrect(int totalCorrect) {
+        this.totalCorrect = totalCorrect;
     }
 
     public int getTotalTested() {
@@ -74,8 +65,7 @@ public class QuizResult {
         // map format is easier to manipulate before update or add to Firebase database
         Map<String, Object> result = new HashMap<>();
         result.put("timestamp", ServerValue.TIMESTAMP);
-        result.put("testId", testId);
-        result.put("totalCorrected", totalCorrected);
+        result.put("totalCorrect", totalCorrect);
         result.put("totalTested", totalTested);
         result.put("questionResultList", questionResultList);
 

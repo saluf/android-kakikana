@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         UserViewModel userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
-        userViewModel.getUserData().observe(requireActivity(), dataSnapshot -> {
+        userViewModel.getUserData().observe(getViewLifecycleOwner(), dataSnapshot -> {
             if (dataSnapshot != null){
                 User user = dataSnapshot.getValue(User.class);
                 if (user != null) {setupUI(user);}

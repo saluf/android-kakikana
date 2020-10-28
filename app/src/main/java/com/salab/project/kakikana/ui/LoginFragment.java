@@ -93,7 +93,6 @@ public class LoginFragment extends Fragment {
     private void requestGoogleAuth() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.firebase_client_id)) //Firebase client ID
-                .requestEmail() //request email
                 .build();
 
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireContext(), gso);

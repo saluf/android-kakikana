@@ -7,10 +7,8 @@ import java.util.Map;
 
 public class User {
 
-    // TODO: consider separate private User data from public one
     private String name = "Anonymous";
     private long registerTime;
-    private long lastLoginTime;
     private int totalCorrect = 0;
     private int totalTested = 0;
 
@@ -33,14 +31,6 @@ public class User {
         this.registerTime = registerTime;
     }
 
-    public long getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(long lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
     public int getTotalCorrect() {
         return totalCorrect;
     }
@@ -57,6 +47,11 @@ public class User {
         this.totalTested = totalTested;
     }
 
+    public void updateTestStatics(int addedCorrect, int addedTested) {
+        this.totalCorrect += addedCorrect;
+        this.totalTested += addedTested;
+    }
+
     public Map<String, Object> toMap(boolean isServerTime) {
         // map format is easier to manipulate before update or add to Firebase database
         Map<String, Object> result = new HashMap<>();
@@ -66,10 +61,8 @@ public class User {
         if (isServerTime) {
             // replace with reserved keyword to fill it with server time
             result.put("registerTime", ServerValue.TIMESTAMP);
-            result.put("lastLoginTime", ServerValue.TIMESTAMP);
         } else {
             result.put("registerTime", registerTime);
-            result.put("lastLoginTime", lastLoginTime);
         }
         return result;
     }
