@@ -80,7 +80,8 @@ public class Repository {
 
     public void signInWithCredential(AuthCredential credential) {
         FirebaseAuthUtil.signInWithCredential(credential).addOnSuccessListener(currentUser -> {
-            createUserDataIfNotExist(currentUser.getUid(), currentUser.getDisplayName());
+            // turn off user profile name collection to reduce privacy level
+            createUserDataIfNotExist(currentUser.getUid(), "Kaki");
         });
     }
 
