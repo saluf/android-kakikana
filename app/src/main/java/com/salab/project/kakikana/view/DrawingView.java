@@ -155,8 +155,11 @@ public class DrawingView extends View {
     }
 
     public void clear() {
-        cachedCanvas.drawColor(backgroundColor);
-        invalidate();
+        if (cachedCanvas != null) {
+            // to prevent situations that clear operation is called before Canvas ready
+            cachedCanvas.drawColor(backgroundColor);
+            invalidate();
+        }
 //        Log.d(TAG, "cleared");
     }
 
