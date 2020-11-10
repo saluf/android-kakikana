@@ -3,6 +3,8 @@ As a Japanese learner I **learned Furigana** (Japanese alphabets consist of Hira
 
 Note: This work is also my capstone project of the Udacity Android Developer Nanodegree. It has been reviewed by experienced engineer(s) and passed the rubrics.
 
+<a href='https://play.google.com/store/apps/details?id=com.salab.project.kakikana'><img alt='Get it on Google Play' width="150" src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+
 ## Technical Features
 
 - **On-device ML**: With Tensorflow Lite, transfer pre-trained model to Android device
