@@ -13,15 +13,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.Task;
 import com.salab.project.kakikana.R;
 import com.salab.project.kakikana.adpater.QuestionHistoryAdapter;
 import com.salab.project.kakikana.databinding.FragmentQuizResultBinding;
 import com.salab.project.kakikana.model.QuestionResult;
 import com.salab.project.kakikana.model.QuizResult;
+import com.salab.project.kakikana.util.InAppReviewUtil;
 import com.salab.project.kakikana.viewmodel.QuizViewModel;
 
 import java.util.List;
@@ -82,7 +88,7 @@ public class QuizResultFragment extends Fragment {
         });
 
         // end quiz and return
-        mBinding.contentQuizResult.btnQuizEnd.setOnClickListener(v -> popBackToQuizList());
+        mBinding.contentQuizResult.btnQuizEnd.setOnClickListener(v -> tryToDisplayInAppReview());
     }
 
     private void SetupViewModel() {
@@ -130,10 +136,32 @@ public class QuizResultFragment extends Fragment {
 
             @Override
             public void handleOnBackPressed() {
-                popBackToQuizList();
+                tryToDisplayInAppReview();
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void tryToDisplayInAppReview() {
+        if (!InAppReviewUtil.isReviewCriteriaMet(requireContext())) {
+            popBackToQuizList();
+            Log.d(TAG, "review criteria not met");
+            return;
+        }
+
+        ReviewManager reviewManager = ReviewManagerFactory.create(requireContext());
+        Task<ReviewInfo> reviewInfo = reviewManager.requestReviewFlow();
+        reviewInfo.addOnCompleteListener(task -> {
+           if (task.isSuccessful()) {
+               Task<Void> flow = reviewManager.launchReviewFlow(requireActivity(), task.getResult());
+               flow.addOnCompleteListener(flowTask -> popBackToQuizList());
+               InAppReviewUtil.reviewPromptTriggered(requireContext());
+               Log.d(TAG, "review flow is successful");
+           } else {
+               popBackToQuizList();
+           }
+        });
+
     }
 
     private void popBackToQuizList() {
