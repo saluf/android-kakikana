@@ -10,8 +10,8 @@ android {
         applicationId "com.salab.project.kakikana"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 104 //102: version number
-        versionName "1.0.4"
+        versionCode 105 //102: version number
+        versionName "1.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
