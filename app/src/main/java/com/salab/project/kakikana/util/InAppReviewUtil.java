@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class InAppReviewUtil {
 
-    public final static Long TIME_GAP_BETWEEN_REVIEW = TimeUnit.SECONDS.toMillis(60);
+    public final static Long TIME_GAP_BETWEEN_REVIEW = TimeUnit.DAYS.toMillis(30);
     public final static String KEY_LAST_IN_APP_REVIEW_TIME = "key_last_in_app_review_time";
     public final static String KEY_LAST_IN_APP_REVIEW_VERSION = "key_last_in_app_review_version";
 
